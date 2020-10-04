@@ -9,7 +9,6 @@
     Local $hGUI = GUICreate("Инвентаризация", 800, 550)
     GUICtrlCreatePic("..\GUI\msoobe.jpg", 0, 0, 400, 100)
 
-
 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
 	 Local $idFile = GUICtrlCreateInput("", 150, 30, 300, 20)
 
@@ -68,27 +67,18 @@
                 ExitLoop
 
             Case $idButton_Save
+				; List all the files in the current script directory.
+				Local $aScriptDir = _FileListToArray(@ScriptDir)
+				; Create a file in the users %TEMP% directory.
+				Local $sFilePath = @DesktopDir & "\Report.csv"
+				; Write array to a file by passing the file name.
+				Local $sDelimiter
+				_FileWriteFromArray($sFilePath, $aScriptDir, 0, Default,$sDelimiter = ",")
+				; Display the file.
+				ShellExecute($sFilePath)
 
-
-
-; List all the files in the current script directory.
-Local $aScriptDir = _FileListToArray(@ScriptDir)
-; Create a file in the users %TEMP% directory.
-Local $sFilePath = @DesktopDir & "\Report.csv"
-; Write array to a file by passing the file name.
-_FileWriteFromArray($sFilePath, $aScriptDir, 1)
-; Display the file.
-ShellExecute($sFilePath)
-
-GUICtrlSetBkColor($idInformation, 0x00FF00)
-GUICtrlSetData($idInformation, "Сбор информации завершён")
-
-; Run Notepad with the window maximized.
-                ;$iPID = Run("notepad.exe", "", @SW_SHOWMAXIMIZED)
-				;Local $idButton = GUICtrlCreateButton("Start", 75, 70, 70, 20)
-                   $iSavPos = 0
-                    ;GUICtrlSetData($idProgressbar1, $i)
-                    ;GUICtrlSetData($idProgressbar2, (50))
+				GUICtrlSetBkColor($idInformation, 0x00FF00)
+				GUICtrlSetData($idInformation, "Сбор информации завершён")
 
         EndSwitch
     WEnd
