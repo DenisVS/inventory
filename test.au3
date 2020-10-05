@@ -11,14 +11,43 @@
 #include <file.au3>
 #include "csvString2array.au3"
 #include "fileRead.au3"
+#include <HTTP.au3>
+; <form action="importData.php" method="post" enctype="multipart/form-data">
+;view-source:http://inventory.bvsz.ru/
+;      <form action="importData.php" method="post" enctype="multipart/form-data">
+;            <input type="file" name="file" />
+;            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
+;        </form>
+
 
 $inFileName = "C:" & "\report.csv"
 ;$inFileName = "C:\temp" & "\test.txt"
 
 Local $parameters
 _FileReadToArray('parameters.txt', $parameters, $FRTA_NOCOUNT)
-;MsgBox(0, "CurrentLineContent: ", $parameters[3] )
+MsgBox(0, "CurrentLineContent: ", $parameters[3] )
 $inFile = _FileRead ($inFileName)
+;_HTTP_Upload("http://inventory.bvsz.ru/importData.php", '1.txt', "file", "pwd=123&filename=" & URLEncode("test.txt") )
+
+
+
+$hFile = FileOpen('1.csv', 0)
+
+; Проверяет, является ли файл открытым, перед тем как использовать функции чтения/записи в файл
+If $hFile = -1 Then
+    MsgBox(4096, "Ошибка", "Невозможно открыть файл.")
+    Exit
+EndIf
+$sChars = FileRead($hFile)
+MsgBox(4096, "Ошибка", $sChars)
+FileClose($hFile)
+
+Local $submitData[1]
+$submitData["data"] = $sChars;
+;_HTTP_Post("http://inventory.bvsz.ru/importData.php", $sChars)
+Local $sResp = _HTTP_Post("http://inventory.bvsz.ru/importPostData.php?name=" & URLEncode("importSubmit"),  "data=" & URLEncode($sChars))
+ConsoleWrite($sResp)
+
 
 $countOfLines = _FileCountLines ($inFileName)
 Local $CurrentLineContent
@@ -28,6 +57,7 @@ Local $enclose
 ;$a = _CSVString2array('"s,s",454,"jh,guihk",5568' , $separator = ',', $enclose = '"' )
 _ArrayDisplay (  $parameters , "ArrayDisplay" )
 ;_ArrayDisplay (  $a , "ArrayDisplay" )
+
 
 
 ;#cs
