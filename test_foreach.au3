@@ -14,16 +14,27 @@
 #include "fileRead.au3"
 
 ; predefined variables
+$parametersFileName = "1.csv"
 $parametersFileName = "parameters.txt"
 $aidaReportFileName = "C:" & "\report.csv"
 
 ; body of the script
 Local $parameters
 _FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
-;MsgBox(0, "CurrentLineContent: ", $parameters[3] )
+;_ArrayDisplay (  $parameters , "ArrayDisplay" )
 
 
+;MsgBox(0,'$parameters',UBound($parameters))
 
+
+;foreach analog
+For $i=0 To UBound($parameters)-1
+	MsgBox(0,'$parameters',$parameters[$i])
+
+;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
+Next
+
+Exit
 
 ;declaration -------------------------------------
 Local $CurrentLineContent
