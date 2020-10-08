@@ -35,13 +35,16 @@ For $i=0 To UBound($parameters)-1
 		MsgBox(0,'$currentParameter',$currentParameter[$ii])
 		MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
 		If Not StringLen($parameters[$ii]) >0 Then
-			$actualParameterCells[$ii] = $parameters[$ii]
+			if $actualParameterCells[$ii] = $parameters[$ii] Then
+				;MsgBox(0,'Actual',ii)
+			EndIf
 		EndIf
 
-		MsgBox(0,'dsdsdsdsd',$ii)
+		;MsgBox(0,'dsdsdsdsd',$ii)
 		;MsgBox(0,'actual',$actualParameter)
-		_ArrayDisplay ($parameters , "AAAAA", Default, 8 )
 	Next
+;	_ArrayDisplay ($actualParameterCells , "AAAAA", Default, 8 )
+
 	;_ArrayDisplay (  $actualParameterCells , "AAAAA" )
 	;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 Next
