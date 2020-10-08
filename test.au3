@@ -12,12 +12,6 @@
 #include "csvString2array.au3"
 #include "fileRead.au3"
 #include <HTTP.au3>
-; <form action="importData.php" method="post" enctype="multipart/form-data">
-;view-source:http://inventory.bvsz.ru/
-;      <form action="importData.php" method="post" enctype="multipart/form-data">
-;            <input type="file" name="file" />
-;            <input type="submit" class="btn btn-primary" name="importSubmit" value="IMPORT">
-;        </form>
 
 
 $inFileName = "C:" & "\report.csv"
