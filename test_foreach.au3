@@ -40,7 +40,7 @@ For $i=0 To UBound($parameters)-1
 
 		MsgBox(0,'dsdsdsdsd',$ii)
 		;MsgBox(0,'actual',$actualParameter)
-		_ArrayDisplay ($ii , "AAAAA" )
+		_ArrayDisplay ($parameters , "AAAAA", Default, 8 )
 	Next
 	;_ArrayDisplay (  $actualParameterCells , "AAAAA" )
 	;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
