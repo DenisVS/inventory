@@ -76,15 +76,19 @@ $skipLine = False
 	EndIf
 		if StringInStr($CurrentLineContent, "File Types,") > 0 Then
 		$skipLine = True
-		EndIf
+	EndIf
 	if StringInStr($CurrentLineContent, "Windows Update,") > 0 Then
 		$skipLine = True
 	EndIf
 	if StringInStr($CurrentLineContent, "Event Logs,") > 0 Then
 		$skipLine = True
 	EndIf
-
-
+	if StringInStr($CurrentLineContent, "OneNote") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Installed Programs,") > 0 And (StringInStr($CurrentLineContent, "Update") > 0 OR StringInStr($CurrentLineContent, "Plugin") > 0 ) Then
+		$skipLine = True
+	EndIf
 
 
 If $skipLine = False Then
