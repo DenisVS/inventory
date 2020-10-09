@@ -38,6 +38,10 @@ For $i=0 To UBound($parameters)-1
 			MsgBox(0,' >0 ', '> 0')
 			if $currentParameter[$ii] = $currentParameter[$ii] Then
 				MsgBox(0,'Actual',$currentParameter[$ii])
+
+
+
+
 			EndIf
 		EndIf
 	Next
