@@ -4,63 +4,65 @@
  Author:         myName
 
  Script Function:
-	Testing of the array reccurence.
+	Template AutoIt script.
 
 #ce ----------------------------------------------------------------------------
-
-#include "csvString2array.au3"
-#include <file.au3>
-#include "fileRead.au3"
-
-; predefined variables
-$parametersFileName = "1.csv"
-$parametersFileName = "parameters.txt"
-$aidaReportFileName = "C:" & "\report.csv"
-
-; body of the script
-Local $parameters
-_FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
-;_ArrayDisplay (  $parameters , "ArrayDisplay" )
-
-
-;MsgBox(0,'$parameters',UBound($parameters))
-
-Local $actualParameterCells
-;foreach analog for array of parameters
-For $i=0 To UBound($parameters)-1
-	MsgBox(0,'$parameters[n]',$parameters[$i])
-	$currentParameter = _CSVString2array( $parameters[$i], ',', '"' )
-	_ArrayDisplay (  $currentParameter , "ArrayDisplay this string" )
-	For $ii=0 To UBound($currentParameter)-1
-		MsgBox(0,'$currentParameter',$currentParameter[$ii])
-		MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
-		If StringLen($currentParameter[$ii]) >0 Then
-			MsgBox(0,' >0 ', '> 0')
-			if $currentParameter[$ii] = $currentParameter[$ii] Then
-				MsgBox(0,'Actual',$currentParameter[$ii])
+ ;;Opt("TrayIconDebug", 1)
+; Script Start - Add your code below here
 
 
 
 
-			EndIf
-		EndIf
-	Next
-	;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
-Next
+; Zip Example
+; _________________________________
+;
+; Zip UDF Example by torels_
+; _________________________________
+
+#include "Zip.au3"
+Dim $Zip, $myfile
+;$myfile = @DesktopDir & "\New AutoIt v3 Script.au3"
+$myfile = "C:" & "\report.csv"
+
+;$Zip = _Zip_Create(@DesktopDir & "\zip_002.zip") ;Create The Zip File. Returns a Handle to the zip File
+$Zip = _Zip_Create("C:\temp" & "\zip_002.zip") ;Create The Zip File. Returns a Handle to the zip File
+
+
+
+_Zip_AddFile($Zip,$myfile) ;add $myfile to the zip archive
+
+;_Zip_AddFolder($Zip,@desktopdir & "\Folder_001",4) ;Add a folder to the zip file (files/subfolders will be added)
+;_Zip_AddFolderContents($Zip, @DesktopDir & "\MyFolder") ;Add a folder's content in the zip file
+
+MsgBox(0,"Items in Zip","there are " & _Zip_Count($Zip) & " items in " & $Zip) ;Msgbox Counting Items in $Zip
+MsgBox(0,"Items in Zip","there are " & _Zip_CountAll($Zip) & " Elements in " & $Zip) ;Msgbox Counting Elements in $Zip
+
+
+
+
 
 Exit
 
-;declaration -------------------------------------
-Local $CurrentLineContent
-Local $separator
-Local $enclose
 
-$aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
-;loop for file reading  --------------------------
-While 1
-	$CurrentLineContent = FileReadLine ( $aidaReportFile )
-	If @error = -1 Then ExitLoop
-	$currentLineAsArray = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
-WEnd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;#RequireAdmin
+;RunWait(@ComSpec & " /c c:\PF\Aida6biz\aida64.exe /R c:\report.xml /CSV /SILENT /CUSTOM c:\PF\Aida6biz\aida64.rpf", "", @SW_HIDE) ;~ Runs command hidden
+; /R report.xml /CSV /SILENT
+;Run("c:\report.7z a " & $7Zfile & "  " & " " & " " & c:\report.xml)
 
