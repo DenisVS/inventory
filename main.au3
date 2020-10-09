@@ -86,11 +86,42 @@ $skipLine = False
 	if StringInStr($CurrentLineContent, "OneNote") > 0 Then
 		$skipLine = True
 	EndIf
-	if StringInStr($CurrentLineContent, "Installed Programs,") > 0 And (StringInStr($CurrentLineContent, "Update") > 0 OR StringInStr($CurrentLineContent, "Plugin") > 0 ) Then
-		$skipLine = True
+	if StringInStr($CurrentLineContent, "Installed Programs") > 0 Then
+		if StringInStr($CurrentLineContent, "Redistributable") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Runtime") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Language") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "NVDIA") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "AMD") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "INTEL") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Driver") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Update") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Plugin") > 0 Then
+			$skipLine = True
+		EndIf
 	EndIf
-	if StringInStr($CurrentLineContent, "Temperatures") > 0 And StringInStr($CurrentLineContent, "Core") > 0 Then
-		$skipLine = True
+	if StringInStr($CurrentLineContent, "Temperatures") > 0 Then
+		if StringInStr($CurrentLineContent, "Core") > 0 Then
+			$skipLine = True
+		EndIf
+		if StringInStr($CurrentLineContent, "Diode") > 0 Then
+			$skipLine = True
+		EndIf
 	EndIf
 
 If $skipLine = False Then
