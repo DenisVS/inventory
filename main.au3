@@ -89,7 +89,9 @@ $skipLine = False
 	if StringInStr($CurrentLineContent, "Installed Programs,") > 0 And (StringInStr($CurrentLineContent, "Update") > 0 OR StringInStr($CurrentLineContent, "Plugin") > 0 ) Then
 		$skipLine = True
 	EndIf
-
+	if StringInStr($CurrentLineContent, "Temperatures") > 0 And StringInStr($CurrentLineContent, "Core") > 0 Then
+		$skipLine = True
+	EndIf
 
 If $skipLine = False Then
 	;By parameters
