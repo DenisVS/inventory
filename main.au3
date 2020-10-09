@@ -12,9 +12,9 @@
 #include "fileRead.au3"
 
 ; predefined variables
-$parametersFileName = "1.csv"
-$parametersFileName = "parameters.txt"
+$parametersFileName = "parameters.csv"
 $aidaReportFileName = "C:" & "\report.csv"
+
 
 ; body of the script
 Local $parameters
