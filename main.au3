@@ -43,6 +43,51 @@ While 1
 	;_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
 
 ;#cs ----
+
+;if StringInStr("This is a sentence with whitespace.", "white") > 0
+
+$skipLine = False
+	if StringInStr($CurrentLineContent, "DLL Files") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "System Drivers") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Processes,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Services,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Certificates,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Video Modes,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Fonts,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Windows Devices,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Device Resources,") > 0 Then
+		$skipLine = True
+	EndIf
+		if StringInStr($CurrentLineContent, "File Types,") > 0 Then
+		$skipLine = True
+		EndIf
+	if StringInStr($CurrentLineContent, "Windows Update,") > 0 Then
+		$skipLine = True
+	EndIf
+	if StringInStr($CurrentLineContent, "Event Logs,") > 0 Then
+		$skipLine = True
+	EndIf
+
+
+
+
+If $skipLine = False Then
 	;By parameters
 	For $i=0 To UBound($parameters)-1
 		;MsgBox(0,'$parameters[n]',$parameters[$i])
@@ -69,16 +114,15 @@ While 1
 			$parameterMatched = FALSE
 		EndIf
 
-
 		if $parameterMatched = TRUE Then
 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
 		EndIf
-;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
+	;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 	Next
 	;--/foreach analog for array of parameters
-;#ce --
-
+	;#ce --
+EndIf
 
 
 

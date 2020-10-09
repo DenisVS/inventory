@@ -1,41 +1,39 @@
-Report,,,,Operating System,Microsoft Windows 10 Pro 10.0.18362.1082 (Win10 RS6 [1903] May 2019 Update)
-Summary,,Computer,582,Computer Type,ACPI x64-based PC
-Summary,,Computer,514,Computer Name,OIT-SDK
-Summary,,Computer,515,User Name,Сим.Д
-Summary,,Computer,516,Logon Domain,SVBCL0
-Summary,,Motherboard,517,CPU Type,QuadCore Intel Core i5-2310; 3100 MHz (31 x 100)
-Summary,,Motherboard,518,Motherboard Name,Gigabyte GA-H61M-S2-B3  (3 PCI-E x1; 1 PCI-E x16; 2 DDR3 DIMM; Audio; Video; Gigabit LAN)
-Summary,,Motherboard,519,Motherboard Chipset,Intel Cougar Point H61; Intel Sandy Bridge
-Summary,,Motherboard,520,System Memory,8109 MB  (DDR3 SDRAM)
-Summary,,Motherboard,521,BIOS Type,Award Modular (05/27/11)
-Summary,,Display,523,Video Adapter,Intel(R) HD Graphics 2000  (2108 MB)
-Summary,,Display,525,Monitor,ViewSonic VA2210-FHD  [22" LCD]  (VFZ194460373)
-Summary,,Storage,528,Disk Drive,INTEL SSDSC2KW128G8 ATA Device  (128 GB; SATA-III)
-Summary,,Storage,585,SMART Hard Disks Status,OK
-Summary,,Partitions,586,Total Size,237.3 GB (135.9 GB free)
-Summary,,Network,538,Primary IP Address,192.168.4.158
-Summary,,Network,539,Primary MAC Address,00-23-24-BC-C9-B9
-Summary,,Peripherals,536,Printer,EPSON SC-T5200D Series
-Summary,,DMI,556,DMI Motherboard Product,H61M-S2-B3
-Summary,,DMI,557,DMI Motherboard Version,x.x
-Computer Name,NetBIOS Name,,0,Computer Name,OIT-SDK
-Computer Name,DNS Host Name,,0,Computer Name,oit-sdk
-Computer Name,Fully Qualified DNS Name,,0,Computer Name,oit-sdk.SVBCL.local
-Overclock,,CPU Properties,0,CPUID CPU Name,Intel(R) Core(TM) i5-2310 CPU @ 2.90GHz
-Overclock,,CPU Properties,0,CPUID Revision,000206A7h
-Sensor,,Temperatures,0,CPU,27 °C
-Sensor,,Temperatures,0,WDC WD2500AAKX-001CA0,25 °C
-Sensor,,Temperatures,0,INTEL SSDSC2KW128G8,25 °C
-SMART,INTEL SSDSC2KW128G8 (PHLA913507LP128BGN),AD,11,Data,386554593305
-Printers,EPSON SC-T5200D Series,Printer Properties,1026,Default Printer,No
-Installed Programs,1C:Предприятие 8 (8.3.15.1830),,1281,Version,8.3.15.1830
-Anti-Virus,Windows Defender,,2305,Software Version,4.18.2008.9
-Operating System,,License Information,3849,Registered Owner,Сергей
-Operating System,,License Information,3850,Registered Organization,
-Operating System,,License Information,3852,Product ID,00331-10000-00001-AA420
-Operating System,,License Information,3853,Product Key,W269N-WFGWX-YVC9B-4J6C9-T83GX
-Operating System,,License Information,3870,Product Activation (WPA),Not Required
-Operating System,,Operating System Properties,3847,OS Installation Date,2020-03-02
-Licenses,Microsoft Office Professional Plus 2013,,3073,Product Key,YC7DK-G2NP3-2QQC3-J6H88-GVGXT
-Licenses,Microsoft Windows 10 Pro,,3073,Product Key,W269N-WFGWX-YVC9B-4J6C9-T83GX
+Report,,,,Operating System,
+Summary,,Computer,,Computer Type,
+Summary,,Computer,,Computer Name,
+Summary,,Computer,,User Name,
+Summary,,Computer,,Logon Domain,
+Summary,,Motherboard,,CPU Type,
+Summary,,Motherboard,,Motherboard Name,
+Summary,,Motherboard,,Motherboard Chipset,
+Summary,,Motherboard,,System Memory,
+Summary,,Motherboard,,BIOS Type,
+Summary,,Display,,Video Adapter,
+Summary,,Display,,Monitor,
+Summary,,Storage,,Disk Drive,
+Summary,,Storage,,SMART Hard Disks Status,
+Summary,,Partitions,,Total Size,
+Summary,,Network,,Primary IP Address,
+Summary,,Network,,Primary MAC Address,
+Summary,,Peripherals,,Printer,
+Summary,,DMI,,DMI Motherboard Product,
+Summary,,DMI,,DMI Motherboard Version,
+Computer Name,NetBIOS Name,,0,Computer Name,
+Computer Name,Fully Qualified DNS Name,,,Computer Name,
+Overclock,,CPU Properties,0,CPUID CPU Name,
+Overclock,,CPU Properties,0,CPUID Revision,
+Sensor,,Temperatures,0,
+Sensor,,Temperatures,0,,
+SMART,,AD,11,Data,
+Printers,,Printer Properties,,Default Printer,
+Installed Programs,,,,Version,
+Anti-Virus,,,,Software Version,
+Operating System,,License Information,,Registered Owner,
+Operating System,,License Information,,Registered Organization,
+Operating System,,License Information,,Product ID,
+Operating System,,License Information,,Product Key,
+Operating System,,License Information,,Product Activation (WPA),
+Operating System,,Operating System Properties,,OS Installation Date,
+Licenses,,,,Product Key,
+Licenses,,,,Product Key,
 
