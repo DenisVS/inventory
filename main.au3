@@ -12,6 +12,7 @@
 #include "fileRead.au3"
 #include "Loga.au3"
 #include "StringFilter.au3"
+#include "ArrayDeleteEmptyRows.au3"
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -32,7 +33,17 @@ _FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
 ;~ _ArrayDisplay (  $parameters , "ArrayDisplay" )
 $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
+
+$dimensionOfData = UBound($parameters)
+Local $collectedData[$dimensionOfData][6]
+
+
 ;loop for file reading  --------------------------
+
+
+
+
+$outRow = 0	;counter
 While 1
  	$skipCsvRow = False
 	$CurrentLineContent = FileReadLine ( $aidaReportFile )
@@ -68,13 +79,35 @@ While 1
 				$parameterMatched = FALSE
 			EndIf
 			if $parameterMatched = TRUE Then
-	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
-	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
+;~ 	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
+;~ 	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
+
+				For $iii=0 To UBound($currentParameter)-1
+					$collectedData[$outRow][$iii] = $currentLineAsArray[$iii]
+
+				Next
+;~ 				MsgBox (0, UBound($currentLineAsArray), UBound($currentLineAsArray))
+				$outRow = $outRow + 1
+			EndIf
+			$Bound = UBound($collectedData)
+ 			if $outRow+1 =  $Bound Then
+				;MsgBox (0, "Redim", $outRow )
+				$Bound = $Bound * 1.3
+				ReDim $collectedData[$Bound][6]
+				;MsgBox (0, "How about?",  UBound($collectedData) )
+				;_ArrayDisplay($collectedData, 'OUT')
 			EndIf
 		;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 		Next
 		;--/foreach analog for array of parameters
 ;~ #ce --
+
+
 	EndIf
+
+
 WEnd
+$collectedData = _DeleteEmptyRows($collectedData)
+		_ArrayDisplay($collectedData, 'OUT')
+
 Exit
