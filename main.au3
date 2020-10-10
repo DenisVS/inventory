@@ -15,10 +15,8 @@
 
 
 ; Predefined variables ---------------------
-
-;AutoItSetOption ("TrayIconDebug", 1);0-off
-;#AutoIt3Wrapper_Run_Debug_Mode=Y
-; predefined variables
+;~ AutoItSetOption ("TrayIconDebug", 1);0-off
+;~ #AutoIt3Wrapper_Run_Debug_Mode=Y
 $parametersFileName = "parameters.csv"
 $aidaReportFileName = "Report.csv"
 ;$aidaReportFileName = "C:" & "\report.csv"
@@ -46,7 +44,7 @@ While 1
 ;~ 	_LogaDebug ('$CurrentLineContent: ' & $CurrentLineContent)
 ;	_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
 
-	If $skipLine = True Then MsgBox(0,'currentParameter', 'SKIP')
+;~ 	If $skipLine = True Then MsgBox(0,'currentParameter', 'SKIP')
 
 ;~ #cs ----
 	if StringInStr($CurrentLineContent, "DLL Files") > 0 Then
@@ -93,8 +91,10 @@ While 1
 		if StringInStr($CurrentLineContent, "Redistributable") > 0 Then
 			$skipLine = True
 		EndIf
-		if StringInStr($CurrentLineContent, "Runtime") > 0 Then
-			$skipLine = True
+		if StringInStr($CurrentLineContent, "Microsoft Visual") > 0 Then
+			if StringInStr($CurrentLineContent, "Runtime") > 0 Then
+				$skipLine = True
+			EndIf
 		EndIf
 		if StringInStr($CurrentLineContent, "Language") > 0 Then
 			$skipLine = True
@@ -142,21 +142,14 @@ While 1
 				If StringLen($currentParameter[$ii]) >0 Then
 	;~ 				_LogaDebug( '$currentParameter[$ii] ' & $currentParameter[$ii])
 	;~ 				_LogaDebug( '$currentLineAsArray[$ii] ' & $currentLineAsArray[$ii])
-
-						if $currentParameter[$ii] = $currentLineAsArray[$ii] Then
-							;MsgBox(0,'currentParameter',$currentParameter[$ii])
-							;MsgBox(0,'currentLine',$currentLineAsArray[$ii])
-							;$parameterMatched = TRUE
-						Else
-							$parameterMatched = FALSE
-						EndIf
-
+					if Not($currentParameter[$ii] = $currentLineAsArray[$ii]) Then
+						$parameterMatched = FALSE
+					EndIf
 				EndIf
 			Next
 			if $ii < 6  Then
 				$parameterMatched = FALSE
 			EndIf
-
 			if $parameterMatched = TRUE Then
 	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
 	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
