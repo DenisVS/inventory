@@ -34,16 +34,13 @@ $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
 ;loop for file reading  --------------------------
 While 1
-;~ 	$skipLine = False
  	$skipCsvRow = False
 	$CurrentLineContent = FileReadLine ( $aidaReportFile )
 	If @error = -1 Then ExitLoop
-;~ 	If StringLen($CurrentLineContent) < 10 Then $skipLine = True
 	If StringLen($CurrentLineContent) < 10 Then $skipCsvRow = True
 	$currentLineAsArray = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
-;~ 	if UBound($currentLineAsArray) < 6 Then $skipLine = True
 	if UBound($currentLineAsArray) < 6 Then $skipCsvRow = True
-$skipCurrentString = _StringFilter($CurrentLineContent)
+	$skipCurrentString = _StringFilter($CurrentLineContent)
 
 ;~ 	_LogaDebug ('$CurrentLineContent: ' & $CurrentLineContent)
 ;	_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
@@ -77,7 +74,7 @@ $skipCurrentString = _StringFilter($CurrentLineContent)
 		;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 		Next
 		;--/foreach analog for array of parameters
-		;#ce --
+;~ #ce --
 	EndIf
 WEnd
 Exit
