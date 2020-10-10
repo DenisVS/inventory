@@ -11,8 +11,7 @@
 #include <file.au3>
 #include "fileRead.au3"
 #include "Loga.au3"
-
-
+#include "StringFilter.au3"
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -35,100 +34,21 @@ $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
 ;loop for file reading  --------------------------
 While 1
-	$skipLine = False
+;~ 	$skipLine = False
+ 	$skipCsvRow = False
 	$CurrentLineContent = FileReadLine ( $aidaReportFile )
 	If @error = -1 Then ExitLoop
-	If StringLen($CurrentLineContent) < 10 Then $skipLine = True
+;~ 	If StringLen($CurrentLineContent) < 10 Then $skipLine = True
+	If StringLen($CurrentLineContent) < 10 Then $skipCsvRow = True
 	$currentLineAsArray = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
-	if UBound($currentLineAsArray) < 6 Then $skipLine = True
+;~ 	if UBound($currentLineAsArray) < 6 Then $skipLine = True
+	if UBound($currentLineAsArray) < 6 Then $skipCsvRow = True
+$skipCurrentString = _StringFilter($CurrentLineContent)
+
 ;~ 	_LogaDebug ('$CurrentLineContent: ' & $CurrentLineContent)
 ;	_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
 
-;~ 	If $skipLine = True Then MsgBox(0,'currentParameter', 'SKIP')
-
-;~ #cs ----
-	if StringInStr($CurrentLineContent, "DLL Files") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "System Drivers") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Processes,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Services,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Certificates,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Video Modes,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Fonts,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Windows Devices,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Device Resources,") > 0 Then
-		$skipLine = True
-	EndIf
-		if StringInStr($CurrentLineContent, "File Types,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Windows Update,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "Event Logs,") > 0 Then
-		$skipLine = True
-	EndIf
-	if StringInStr($CurrentLineContent, "OneNote") > 0 Then
-		$skipLine = True
-	EndIf
-;~ #cs
-	if StringInStr($CurrentLineContent, "Installed Programs") > 0 Then
-		if StringInStr($CurrentLineContent, "Redistributable") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "Microsoft Visual") > 0 Then
-			if StringInStr($CurrentLineContent, "Runtime") > 0 Then
-				$skipLine = True
-			EndIf
-		EndIf
-		if StringInStr($CurrentLineContent, "Language") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "NVIDIA") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "AMD") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "INTEL") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "Driver") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "Update") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "Plugin") > 0 Then
-			$skipLine = True
-		EndIf
-	EndIf
-;#ce
-	if StringInStr($CurrentLineContent, "Temperatures") > 0 Then
-		if StringInStr($CurrentLineContent, "Core") > 0 Then
-			$skipLine = True
-		EndIf
-		if StringInStr($CurrentLineContent, "Diode") > 0 Then
-			$skipLine = True
-		EndIf
-	EndIf
-
-	If $skipLine = False Then
+	If $skipCsvRow  = False  And $skipCurrentString = False Then
 		;By parameters
 		For $i=0 To UBound($parameters)-1
 			;MsgBox(0,'$parameters[n]',$parameters[$i])
@@ -159,9 +79,5 @@ While 1
 		;--/foreach analog for array of parameters
 		;#ce --
 	EndIf
-
-
-
-
 WEnd
 Exit
