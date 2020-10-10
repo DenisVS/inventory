@@ -10,43 +10,45 @@
 #include "csvString2array.au3"
 #include <file.au3>
 #include "fileRead.au3"
+#include "Loga.au3"
 
+
+
+; Predefined variables ---------------------
+
+;AutoItSetOption ("TrayIconDebug", 1);0-off
+;#AutoIt3Wrapper_Run_Debug_Mode=Y
 ; predefined variables
 $parametersFileName = "parameters.csv"
-$aidaReportFileName = "C:" & "\report.csv"
-
-
-; body of the script
-Local $parameters
-_FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
-;_ArrayDisplay (  $parameters , "ArrayDisplay" )
-
-
-
-Local $actualParameterCells
-
-
-;Exit
+$aidaReportFileName = "Report.csv"
+;$aidaReportFileName = "C:" & "\report.csv"
 
 ;declaration -------------------------------------
 Local $CurrentLineContent
 Local $separator
 Local $enclose
+Local $parameters
 
+;-------------------- body of the script
+
+_FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
+;~ _ArrayDisplay (  $parameters , "ArrayDisplay" )
 $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
 ;loop for file reading  --------------------------
 While 1
+	$skipLine = False
 	$CurrentLineContent = FileReadLine ( $aidaReportFile )
 	If @error = -1 Then ExitLoop
+	If StringLen($CurrentLineContent) < 10 Then $skipLine = True
 	$currentLineAsArray = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
-	;_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
+	if UBound($currentLineAsArray) < 6 Then $skipLine = True
+;~ 	_LogaDebug ('$CurrentLineContent: ' & $CurrentLineContent)
+;	_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
 
-;#cs ----
+	If $skipLine = True Then MsgBox(0,'currentParameter', 'SKIP')
 
-;if StringInStr("This is a sentence with whitespace.", "white") > 0
-
-$skipLine = False
+;~ #cs ----
 	if StringInStr($CurrentLineContent, "DLL Files") > 0 Then
 		$skipLine = True
 	EndIf
@@ -86,6 +88,7 @@ $skipLine = False
 	if StringInStr($CurrentLineContent, "OneNote") > 0 Then
 		$skipLine = True
 	EndIf
+;~ #cs
 	if StringInStr($CurrentLineContent, "Installed Programs") > 0 Then
 		if StringInStr($CurrentLineContent, "Redistributable") > 0 Then
 			$skipLine = True
@@ -96,7 +99,7 @@ $skipLine = False
 		if StringInStr($CurrentLineContent, "Language") > 0 Then
 			$skipLine = True
 		EndIf
-		if StringInStr($CurrentLineContent, "NVDIA") > 0 Then
+		if StringInStr($CurrentLineContent, "NVIDIA") > 0 Then
 			$skipLine = True
 		EndIf
 		if StringInStr($CurrentLineContent, "AMD") > 0 Then
@@ -115,6 +118,7 @@ $skipLine = False
 			$skipLine = True
 		EndIf
 	EndIf
+;#ce
 	if StringInStr($CurrentLineContent, "Temperatures") > 0 Then
 		if StringInStr($CurrentLineContent, "Core") > 0 Then
 			$skipLine = True
@@ -124,42 +128,44 @@ $skipLine = False
 		EndIf
 	EndIf
 
-If $skipLine = False Then
-	;By parameters
-	For $i=0 To UBound($parameters)-1
-		;MsgBox(0,'$parameters[n]',$parameters[$i])
-		$currentParameter = _CSVString2array( $parameters[$i], ',', '"' )
-		;_ArrayDisplay (  $currentParameter , "Array $currentParameter" )
-		Local $parameterMatched = TRUE
-		;By parameter cells
-		For $ii=0 To UBound($currentParameter)-1
-			;MsgBox(0,'$currentParameter',$currentParameter[$ii])
-			;MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
-			If StringLen($currentParameter[$ii]) >0 Then
+	If $skipLine = False Then
+		;By parameters
+		For $i=0 To UBound($parameters)-1
+			;MsgBox(0,'$parameters[n]',$parameters[$i])
+			$currentParameter = _CSVString2array( $parameters[$i], ',', '"' )
+			;_ArrayDisplay (  $currentParameter , "Array $currentParameter" )
+			Local $parameterMatched = TRUE
+			;By parameter cells
+			For $ii=0 To UBound($currentParameter)-1
+				;MsgBox(0,'$currentParameter',$currentParameter[$ii])
+				;MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
+				If StringLen($currentParameter[$ii]) >0 Then
+	;~ 				_LogaDebug( '$currentParameter[$ii] ' & $currentParameter[$ii])
+	;~ 				_LogaDebug( '$currentLineAsArray[$ii] ' & $currentLineAsArray[$ii])
 
-				;MsgBox(0,' >0 ', '> 0')
-				if $currentParameter[$ii] = $currentLineAsArray[$ii] Then
-					;MsgBox(0,'currentParameter',$currentParameter[$ii])
-					;MsgBox(0,'currentLine',$currentLineAsArray[$ii])
-					;$parameterMatched = TRUE
-				Else
-					$parameterMatched = FALSE
+						if $currentParameter[$ii] = $currentLineAsArray[$ii] Then
+							;MsgBox(0,'currentParameter',$currentParameter[$ii])
+							;MsgBox(0,'currentLine',$currentLineAsArray[$ii])
+							;$parameterMatched = TRUE
+						Else
+							$parameterMatched = FALSE
+						EndIf
+
 				EndIf
+			Next
+			if $ii < 6  Then
+				$parameterMatched = FALSE
 			EndIf
-		Next
-		if $ii < 6  Then
-			$parameterMatched = FALSE
-		EndIf
 
-		if $parameterMatched = TRUE Then
-			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
-			_ArrayDisplay (  $currentParameter , 'With Parameter' )
-		EndIf
-	;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
-	Next
-	;--/foreach analog for array of parameters
-	;#ce --
-EndIf
+			if $parameterMatched = TRUE Then
+	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
+	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
+			EndIf
+		;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
+		Next
+		;--/foreach analog for array of parameters
+		;#ce --
+	EndIf
 
 
 
