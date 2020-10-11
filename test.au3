@@ -19,7 +19,7 @@ $inFileName = "C:" & "\report.csv"
 
 Local $parameters
 _FileReadToArray('parameters.txt', $parameters, $FRTA_NOCOUNT)
-MsgBox(0, "CurrentLineContent: ", $parameters[3] )
+;MsgBox(0, "CurrentLineContent: ", $parameters[3] )
 $inFile = _FileRead ($inFileName)
 ;_HTTP_Upload("http://inventory.bvsz.ru/importData.php", '1.txt', "file", "pwd=123&filename=" & URLEncode("test.txt") )
 
@@ -33,9 +33,11 @@ If $hFile = -1 Then
     Exit
 EndIf
 $sChars = FileRead($hFile)
-MsgBox(4096, "Ошибка", $sChars)
+;~ MsgBox(4096, "$sChars", $sChars)
 FileClose($hFile)
 
+
+$sChars = "kokok,qwqwq,kokok,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss,qwqwq,57567676,active,fdgdfghgfdh,ssssssssssss"
 Local $submitData[1]
 $submitData["data"] = $sChars;
 ;_HTTP_Post("http://inventory.bvsz.ru/importData.php", $sChars)
@@ -60,7 +62,7 @@ While 1
 	If @error = -1 Then ExitLoop
 ;	MsgBox(0, "CurrentLineContent: ", $CurrentLineContent )
 	$aaa = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
-_ArrayDisplay (  $aaa , "ArrayDisplay" )
+;~ _ArrayDisplay (  $aaa , "ArrayDisplay" )
 
 WEnd
 ;#ce

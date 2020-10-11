@@ -15,6 +15,8 @@
 #include "ArrayDeleteEmptyRows.au3"
 #include "WideRedim.au3"
 #include "DataProcessing.au3"
+#include "CSVSplit.au3"
+#include <HTTP.au3>
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -127,10 +129,20 @@ While 1
 WEnd
 $collectedData = _DeleteEmptyRows($collectedData)
 ReDim $options[UBound($collectedData)][10]
-_ArrayDisplay($collectedData, 'OUT')
-_ArrayDisplay($options, 'OUT')
+;~ _ArrayDisplay($collectedData, 'OUT')
+;~ _ArrayDisplay($options, 'OUT')
 $result = _DataProcessing ($collectedData, $options)
 _ArrayDisplay($result, 'result')
+
+$csvOutcome = _ArrayToCSV($result)
+;~ FileWrite ( "test.csv", $csvOutcome )
+MsgBox (0, '$csvOutcome', $csvOutcome)
+;~ Local $submitData[1]
+;_HTTP_Post("http://inventory.bvsz.ru/importData.php", $sChars)
+;~ Local $sResp = _HTTP_Post("http://inventory.bvsz.ru/importPostData.php?name=" & URLEncode("importSubmit"),  "data=" & URLEncode($csvOutcome))
+Local $sResp = _HTTP_Post("http://inventory.bvsz.ru/importPostData.php",  'data="' & URLEncode($csvOutcome)&'"')
+ConsoleWrite($sResp)
+
 
 
 Exit
