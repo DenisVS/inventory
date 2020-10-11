@@ -12,6 +12,8 @@ Func _DataProcessing ($data, $options)
 	Local $whichCellsToContent[6]
 	Local $currentLine[6]
 	Local $rowOptions[10]
+	Local $table[2][UBound($data)]
+
 	For $i=0 To UBound($data)-1
 		For $ii=0 To 5
 			$currentLine[$ii] = $data[$i][$ii]
@@ -23,21 +25,22 @@ Func _DataProcessing ($data, $options)
 ;~ 		_ArrayDisplay($rowOptions, '$rowOptions')
 
 		; define columns
-		$columnName = $rowOptions[0]
+		$table[0][$i] = $rowOptions[0]	;columnName
 
 		$cell = StringSplit ( $rowOptions[1], "" , 2 )
 		ReDim $cell[UBound($cell)]
-		Local $columnContent =''
+;~ 		Local $table[$i][1] =''
 		For $iii=0 To UBound($cell)-1
-			$columnContent &= $currentLine[$cell[$iii]]
+			$table[1][$i] &= $currentLine[$cell[$iii]]
 		Next
-		MsgBox (0, 'column', $columnName &@CRLF& $columnContent)
+;~ 		MsgBox (0, 'column', $columnName &@CRLF& $table[$i][1])
 
 
 
 
-;~ $columnContent =
+;~ $table[$i][1] =
 		;$whichCellsToContent =
 	Next
-
+;~ 	_ArrayDisplay (  $table , 'Result' )
+	Return $table
 EndFunc

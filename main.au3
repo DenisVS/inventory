@@ -129,6 +129,8 @@ $collectedData = _DeleteEmptyRows($collectedData)
 ReDim $options[UBound($collectedData)][10]
 _ArrayDisplay($collectedData, 'OUT')
 _ArrayDisplay($options, 'OUT')
-_DataProcessing ($collectedData, $options)
+$result = _DataProcessing ($collectedData, $options)
+_ArrayDisplay($result, 'result')
+
 
 Exit
