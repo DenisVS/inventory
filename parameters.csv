@@ -1,33 +1,35 @@
-Report,,,,Operating System,
-Summary,,Computer,,Computer Type,
-Summary,,Computer,,User Name,
-Summary,,Computer,,Logon Domain,
-Summary,,Motherboard,,CPU Type,,AAA,BBB
-Summary,,Motherboard,,Motherboard Name,
-Summary,,Motherboard,,System Memory,
-Summary,,Motherboard,,BIOS Type,
-Summary,,Display,,Video Adapter,,vvv,x,CCC
-Summary,,Display,,Monitor,
-Summary,,Storage,,Disk Drive,
-Summary,,Storage,,SMART Hard Disks Status,
-Summary,,Partitions,,Total Size,
-Summary,,Network,,Primary IP Address,
-Summary,,Network,,Primary MAC Address,
-Computer Name,NetBIOS Name,,0,Computer Name,
-Computer Name,Fully Qualified DNS Name,,,Computer Name,
-Overclock,,CPU Properties,0,CPUID CPU Name,
-Overclock,,CPU Properties,0,CPUID Revision,
-Sensor,,Temperatures,0,,
+Report,,,,Operating System,,Operating System,5
+Summary,,Computer,,User Name,,User Name,5
+Summary,,Computer,,Logon Domain,,Logon Domain,5
+Summary,,Motherboard,,CPU Type,,CPU Type,5
+Summary,,Motherboard,,Motherboard Name,Motherboard,5
+Summary,,Motherboard,,Motherboard Chipset,,Chipset,5
+Summary,,Motherboard,,System Memory,,Memory,5
+Summary,,Motherboard,,BIOS Type,,BIOS,5
+Summary,,Display,,Video Adapter,,Videocard,5
+Summary,,Display,,Monitor,,Monitor,5
+Summary,,Storage,,Disk Drive,, HDD,5
+Summary,,Storage,,SMART Hard Disks Status,,SMART,5
+Summary,,Partitions,,Total Size,,Partitions,5
+Summary,,Partitions,530,C: (NTFS),100837 MB (50018 MB free),Partition,45
+Summary,,Network,,Primary IP Address,,IP,5
+Summary,,Network,,Primary MAC Address,,MAC,5
+Computer Name,NetBIOS Name,,,Computer Name,,NetBIOS Name,5
+Computer Name,Computer Comment,,,Computer Name,,Computer Name,5
+Computer Name,Fully Qualified DNS Name,,,Computer Name,,FQDN,5
+Overclock,,CPU Properties,0,CPUID CPU Name,,CPU,5
+Overclock,,CPU Properties,0,CPUID Revision,,CPU Revision,5
+Sensor,,Temperatures,0,,,Temperatures,45
 SMART,,AD,11,Data,
-Printers,,Printer Properties,,Default Printer,Yes
-Installed Programs,,,,Version,
-Anti-Virus,,,,Software Version,
-Operating System,,License Information,,Registered Owner,
-Operating System,,License Information,,Registered Organization,
-Operating System,,License Information,,Product ID,
-Operating System,,License Information,,Product Key,
-Operating System,,License Information,,Product Activation (WPA),
-Operating System,,Operating System Properties,,OS Installation Date,
-Licenses,,,,Product Key,
-Licenses,,,,Product Key,
+Printers,,Printer Properties,,Default Printer,Yes,Printer,2
+Installed Programs,,,,Version,,Software,25
+Anti-Virus,,,,Software Version,,Anti-Virus,25
+Operating System,,License Information,,Registered Owner,,Owner,5
+Operating System,,License Information,,Registered Organization,,Organization,5
+Operating System,,License Information,,Product ID,,Product ID,5
+Operating System,,License Information,,Product Key,,Product Key,5
+Operating System,,License Information,,Product Activation (WPA),,Activation,5
+Operating System,,Operating System Properties,,OS Installation Date,,OS Installation Date,5
+Licenses,,,,Product Key,,25
+
 

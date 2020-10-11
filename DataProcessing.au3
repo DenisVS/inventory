@@ -23,12 +23,18 @@ Func _DataProcessing ($data, $options)
 ;~ 		_ArrayDisplay($rowOptions, '$rowOptions')
 
 		; define columns
-		$columnName = $rowOptions[1]
+		$columnName = $rowOptions[0]
 
-		$rowOptions[2] = 'jop'
-		$cell = StringSplit ( $rowOptions[2], "" , 2 )
+		$cell = StringSplit ( $rowOptions[1], "" , 2 )
 		ReDim $cell[UBound($cell)]
-		_ArrayDisplay($cell, 'jopanoviy')
+		Local $columnContent =''
+		For $iii=0 To UBound($cell)-1
+			$columnContent &= $currentLine[$cell[$iii]]
+		Next
+		MsgBox (0, 'column', $columnName &@CRLF& $columnContent)
+
+
+
 
 ;~ $columnContent =
 		;$whichCellsToContent =
