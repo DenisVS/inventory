@@ -63,21 +63,28 @@ While 1
 			$currentParameter = _CSVString2array( $parameters[$i], ',', '"' )
 			;_ArrayDisplay (  $currentParameter , "Array $currentParameter" )
 			Local $parameterMatched = TRUE
-			;By parameter cells
-			For $ii=0 To UBound($currentParameter)-1
-				;MsgBox(0,'$currentParameter',$currentParameter[$ii])
-				;MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
-				If StringLen($currentParameter[$ii]) >0 Then
-	;~ 				_LogaDebug( '$currentParameter[$ii] ' & $currentParameter[$ii])
-	;~ 				_LogaDebug( '$currentLineAsArray[$ii] ' & $currentLineAsArray[$ii])
-					if Not($currentParameter[$ii] = $currentLineAsArray[$ii]) Then
-						$parameterMatched = FALSE
-					EndIf
-				EndIf
-			Next
-			if $ii < 6  Then
+
+			if UBound($currentParameter) < 6  Then ; if unconditional line
 				$parameterMatched = FALSE
 			EndIf
+			;By parameter cells
+;~ 			For $ii=0 To UBound($currentParameter)-1
+			If $parameterMatched = TRUE Then	; if not unconditional line, parse it
+				For $ii=0 To 5	;tentetive
+					;MsgBox(0,'$currentParameter',$currentParameter[$ii])
+					;MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
+					If StringLen($currentParameter[$ii]) >0 Then
+		;~ 				_LogaDebug( '$currentParameter[$ii] ' & $currentParameter[$ii])
+		;~ 				_LogaDebug( '$currentLineAsArray[$ii] ' & $currentLineAsArray[$ii])
+						if Not($currentParameter[$ii] = $currentLineAsArray[$ii]) Then
+							$parameterMatched = FALSE
+						EndIf
+					EndIf
+				Next
+			EndIf
+;~ 			if $ii < 6  Then ; Probably if unconditional line (now upper)
+;~ 				$parameterMatched = FALSE
+;~ 			EndIf
 			if $parameterMatched = TRUE Then
 ;~ 	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
 ;~ 	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
