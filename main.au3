@@ -14,6 +14,7 @@
 #include "StringFilter.au3"
 #include "ArrayDeleteEmptyRows.au3"
 #include "WideRedim.au3"
+#include "DataProcessing.au3"
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -105,7 +106,7 @@ While 1
 
 				if $iii < UBound($currentParameter) Then
 					For $iii=$iii To UBound($currentParameter)-1
-						$options[$outRow][$iii] = $currentParameter[$iii]
+						$options[$outRow][$iii-6] = $currentParameter[$iii]
 					Next
 				EndIf
 ;~ 				MsgBox (0, UBound($currentLineAsArray), UBound($currentLineAsArray))
@@ -113,6 +114,7 @@ While 1
 			EndIf
 
 			$collectedData = _WideRedim ($collectedData, $outRow, 6)
+			$options = _WideRedim ($options, $outRow, 10)
 		;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 		Next
 		;--/foreach analog for array of parameters
@@ -124,7 +126,9 @@ While 1
 
 WEnd
 $collectedData = _DeleteEmptyRows($collectedData)
-		_ArrayDisplay($collectedData, 'OUT')
-		_ArrayDisplay($options, 'OUT')
+ReDim $options[UBound($collectedData)][10]
+_ArrayDisplay($collectedData, 'OUT')
+_ArrayDisplay($options, 'OUT')
+_DataProcessing ($collectedData, $options)
 
 Exit
