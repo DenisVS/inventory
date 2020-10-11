@@ -63,6 +63,9 @@ Func _StringFilter ($ourString)
 		if StringInStr($ourString, "Language") > 0 Then
 			$stop = True
 		EndIf
+		if StringInStr($ourString, "Uninstall") > 0 Then
+			$stop = True
+		EndIf
 		if StringInStr($ourString, "NVIDIA") > 0 Then
 			$stop = True
 		EndIf
