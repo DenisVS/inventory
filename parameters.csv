@@ -2,11 +2,11 @@ Report,,,,Operating System,
 Summary,,Computer,,Computer Type,
 Summary,,Computer,,User Name,
 Summary,,Computer,,Logon Domain,
-Summary,,Motherboard,,CPU Type,
+Summary,,Motherboard,,CPU Type,,AAA,BBB
 Summary,,Motherboard,,Motherboard Name,
 Summary,,Motherboard,,System Memory,
 Summary,,Motherboard,,BIOS Type,
-Summary,,Display,,Video Adapter,
+Summary,,Display,,Video Adapter,,vvv,x,CCC
 Summary,,Display,,Monitor,
 Summary,,Storage,,Disk Drive,
 Summary,,Storage,,SMART Hard Disks Status,

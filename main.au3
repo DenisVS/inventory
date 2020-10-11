@@ -13,6 +13,7 @@
 #include "Loga.au3"
 #include "StringFilter.au3"
 #include "ArrayDeleteEmptyRows.au3"
+#include "WideRedim.au3"
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -36,6 +37,7 @@ $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
 
 $dimensionOfData = UBound($parameters)
 Local $collectedData[$dimensionOfData][6]
+Local $options[$dimensionOfData][10]
 
 
 ;loop for file reading  --------------------------
@@ -68,7 +70,6 @@ While 1
 				$parameterMatched = FALSE
 			EndIf
 			;By parameter cells
-;~ 			For $ii=0 To UBound($currentParameter)-1
 			If $parameterMatched = TRUE Then	; if not unconditional line, parse it
 				For $ii=0 To 5	;tentetive
 					;MsgBox(0,'$currentParameter',$currentParameter[$ii])
@@ -81,6 +82,13 @@ While 1
 						EndIf
 					EndIf
 				Next
+				If $parameterMatched = TRUE Then	; if conditional line, parse options
+					For $ii = $ii To UBound($currentParameter)-1
+						If StringLen($currentParameter[$ii]) >0 Then
+
+						EndIf
+					Next
+				EndIf
 			EndIf
 ;~ 			if $ii < 6  Then ; Probably if unconditional line (now upper)
 ;~ 				$parameterMatched = FALSE
@@ -89,21 +97,22 @@ While 1
 ;~ 	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
 ;~ 	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
 
-				For $iii=0 To UBound($currentParameter)-1
+;~ 				For $iii=0 To UBound($currentParameter)-1
+				For $iii=0 To 5
 					$collectedData[$outRow][$iii] = $currentLineAsArray[$iii]
-
 				Next
+;~ 				MsgBox (0, UBound('D'), UBound($currentParameter)&' '& $iii)
+
+				if $iii < UBound($currentParameter) Then
+					For $iii=$iii To UBound($currentParameter)-1
+						$options[$outRow][$iii] = $currentParameter[$iii]
+					Next
+				EndIf
 ;~ 				MsgBox (0, UBound($currentLineAsArray), UBound($currentLineAsArray))
 				$outRow = $outRow + 1
 			EndIf
-			$Bound = UBound($collectedData)
- 			if $outRow+1 =  $Bound Then
-				;MsgBox (0, "Redim", $outRow )
-				$Bound = $Bound * 1.3
-				ReDim $collectedData[$Bound][6]
-				;MsgBox (0, "How about?",  UBound($collectedData) )
-				;_ArrayDisplay($collectedData, 'OUT')
-			EndIf
+
+			$collectedData = _WideRedim ($collectedData, $outRow, 6)
 		;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 		Next
 		;--/foreach analog for array of parameters
@@ -116,5 +125,6 @@ While 1
 WEnd
 $collectedData = _DeleteEmptyRows($collectedData)
 		_ArrayDisplay($collectedData, 'OUT')
+		_ArrayDisplay($options, 'OUT')
 
 Exit
