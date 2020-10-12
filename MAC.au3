@@ -213,25 +213,25 @@ Func _ArrayToMap(ByRef $aIn, $bFlags = 0)
 EndFunc
 
 
-Func _MapToArray(ByRef $mIn, $bFlags = 0)
-    If BitAND($bFlags, 1) Then  ; transpose ?
-        Local $aOut[2][UBound($mIn)]
-    Else
-        Local $aOut[UBound($mIn)][2]
-    EndIf
-    Local $i = 0
-    For $key In Mapkeys($mIn)
-        If BitAND($bFlags, 1) Then  ; transpose ?
-            $aOut[0][$i] = $key
-            $aOut[1][$i] = $mIn[$key]
-        Else
-            $aOut[$i][0] = $key
-            $aOut[$i][1] = $mIn[$key]
-        EndIf
-        $i += 1
-    Next
-    Return $aOut
-EndFunc
+;~ Func _MapToArray(ByRef $mIn, $bFlags = 0)
+;~     If BitAND($bFlags, 1) Then  ; transpose ?
+;~         Local $aOut[2][UBound($mIn)]
+;~     Else
+;~         Local $aOut[UBound($mIn)][2]
+;~     EndIf
+;~     Local $i = 0
+;~     For $key In Mapkeys($mIn)
+;~         If BitAND($bFlags, 1) Then  ; transpose ?
+;~             $aOut[0][$i] = $key
+;~             $aOut[1][$i] = $mIn[$key]
+;~         Else
+;~             $aOut[$i][0] = $key
+;~             $aOut[$i][1] = $mIn[$key]
+;~         EndIf
+;~         $i += 1
+;~     Next
+;~     Return $aOut
+;~ EndFunc
 
 
 Func _CsvToMap(ByRef $sIn)
@@ -292,22 +292,22 @@ Func _CsvToMap(ByRef $sIn)
 EndFunc
 
 
-Func _MapToCsv(ByRef $mIn, $bFlags = 0)
-    If BitAND($bFlags, 1) Then  ; transpose ?
-        Local $sOut, $sline
-        For $key In Mapkeys($mIn)
-            $sOut &= __CsvValueEncode($key) & ','
-            $sline &= __CsvValueEncode($mIn[$key]) & ','
-        Next
-        Return StringTrimRight($sOut, 1) & @CRLF & StringTrimRight($sline, 1) & @CRLF
-    Else
-        Local $sOut
-        For $key In Mapkeys($mIn)
-            $sOut &= __CsvValueEncode($key) & ',' & __CsvValueEncode($mIn[$key]) & @CRLF
-        Next
-        Return $sOut
-    EndIf
-EndFunc
+;~ Func _MapToCsv(ByRef $mIn, $bFlags = 0)
+;~     If BitAND($bFlags, 1) Then  ; transpose ?
+;~         Local $sOut, $sline
+;~         For $key In Mapkeys($mIn)
+;~             $sOut &= __CsvValueEncode($key) & ','
+;~             $sline &= __CsvValueEncode($mIn[$key]) & ','
+;~         Next
+;~         Return StringTrimRight($sOut, 1) & @CRLF & StringTrimRight($sline, 1) & @CRLF
+;~     Else
+;~         Local $sOut
+;~         For $key In Mapkeys($mIn)
+;~             $sOut &= __CsvValueEncode($key) & ',' & __CsvValueEncode($mIn[$key]) & @CRLF
+;~         Next
+;~         Return $sOut
+;~     EndIf
+;~ EndFunc
 
 
 ; example use
@@ -340,14 +340,14 @@ EndFunc
 ;~ Exit
 #ce
 
-#include <Array.au3>
+;~ #include <Array.au3>
 
-Local $s = "@" & WinGetHandle(AutoItWinGetTitle()) & ", 55.456e-8, *" & Ptr(0x12345678) & ",,"""",StringLen()" & ',"abc ""123"" def"'
-ConsoleWrite($s & @LF)
-Local $a = _CsvToArray($s)
-_ArrayDisplay($a)
-For $i = 0 To UBound($a, 2) - 1
-    ConsoleWrite(VarGetType($a[0][$i]) & " = " & ($a[0][$i] = Null ? "Null" : $a[0][$i]) & @LF)
-Next
-Local $t = _ArrayToCsv($a)
-ConsoleWrite($t & @LF)
+;~ Local $s = "@" & WinGetHandle(AutoItWinGetTitle()) & ", 55.456e-8, *" & Ptr(0x12345678) & ",,"""",StringLen()" & ',"abc ""123"" def"'
+;~ ConsoleWrite($s & @LF)
+;~ Local $a = _CsvToArray($s)
+;~ _ArrayDisplay($a)
+;~ For $i = 0 To UBound($a, 2) - 1
+;~     ConsoleWrite(VarGetType($a[0][$i]) & " = " & ($a[0][$i] = Null ? "Null" : $a[0][$i]) & @LF)
+;~ Next
+;~ Local $t = _ArrayToCsv($a)
+;~ ConsoleWrite($t & @LF)

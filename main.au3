@@ -16,7 +16,10 @@
 #include "WideRedim.au3"
 #include "DataProcessing.au3"
 #include "CSVSplit.au3"
-#include <HTTP.au3>
+;~ #include <HTTP.au3>
+;~ #include <MAC.au3>
+;~ #include "JSON.au3"
+
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -132,16 +135,43 @@ ReDim $options[UBound($collectedData)][10]
 ;~ _ArrayDisplay($collectedData, 'OUT')
 ;~ _ArrayDisplay($options, 'OUT')
 $result = _DataProcessing ($collectedData, $options)
-_ArrayDisplay($result, 'result')
+;~ _ArrayDisplay($result, 'result')
+
 
 $csvOutcome = _ArrayToCSV($result)
 ;~ FileWrite ( "test.csv", $csvOutcome )
 MsgBox (0, '$csvOutcome', $csvOutcome)
-;~ Local $submitData[1]
-;_HTTP_Post("http://inventory.bvsz.ru/importData.php", $sChars)
-;~ Local $sResp = _HTTP_Post("http://inventory.bvsz.ru/importPostData.php?name=" & URLEncode("importSubmit"),  "data=" & URLEncode($csvOutcome))
-Local $sResp = _HTTP_Post("http://inventory.bvsz.ru/importPostData.php",  'data="' & URLEncode($csvOutcome)&'"')
-ConsoleWrite($sResp)
+
+
+;~ dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
+; The data to be sent
+$sPD = 'data=' & $csvOutcome
+
+
+; Creating the object
+$oHTTP = ObjCreate("winhttp.winhttprequest.5.1")
+$oHTTP.Open("POST", "http://inventory.bvsz.ru/importPostData.php", False)
+$oHTTP.SetRequestHeader("Content-Type", "application/x-www-form-urlencoded")
+
+; Performing the Request
+$oHTTP.Send($sPD)
+
+; Download the body response if any, and get the server status response code.
+$oReceived = $oHTTP.ResponseText
+$oStatusCode = $oHTTP.Status
+
+If $oStatusCode <> 200 then
+ MsgBox(4096, "Response code", $oStatusCode)
+EndIf
+
+	_LogaDebug ($oReceived)
+; Saves the body response regardless of the Response code
+;~  $file = FileOpen("Received.log", 2) ; The value of 2 overwrites the file if it already exists
+;~  FileWrite($file, $oReceived)
+;~  FileClose($file)
+;~ dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
+
 
 
 

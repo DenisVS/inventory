@@ -22,7 +22,7 @@ Func __HTTP_OnError(ByRef $oMyError)
 			"Number is: " & $HexNumber & @LF & _
 			"Windescription is: " & $oMyError.windescription _
 			)
-	Return SetError(5, $HexNumber, 0)
+	Return SetError(5, $HexNumber & $oMyError, 0)
 EndFunc   ;==>__HTTP_OnError
 
 Func _HTTP_Get($url)
