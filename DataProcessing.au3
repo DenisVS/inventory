@@ -19,21 +19,21 @@ Func _DataProcessing ($data, $options)
 	Local $paramPlus = 0
 
 
-	;$i1	- counter of the rows in existed table
-	;$ii - counter of the cells in the line of the existed table
-	For $i1=0 To UBound($data)-1
-		For $ii=0 To 5
-			$currentLine[$ii] = $data[$i1][$ii]
+	;$curRowExistedTable	- counter of the rows in existed table
+	;$curCellExistedTable - counter of the cells in the line of the existed table
+	For $curRowExistedTable=0 To UBound($data)-1
+		For $curCellExistedTable=0 To 5
+			$currentLine[$curCellExistedTable] = $data[$curRowExistedTable][$curCellExistedTable]
 		Next
-		For $ii=0 To 9
-			$rowOptions[$ii] = $options[$i1][$ii]
+		For $curCellExistedTable=0 To 9
+			$rowOptions[$curCellExistedTable] = $options[$curRowExistedTable][$curCellExistedTable]
 		Next
 ;~ 		_ArrayDisplay($currentLine, '$data')
 ;~ 		_ArrayDisplay($rowOptions, '$rowOptions')
 
 
 		; What should we do if the current row equals to a previous
-		if	_ArrayCompare($previousLine, $currentLine) = True And $i1 > 0	Then
+		if	_ArrayCompare($previousLine, $currentLine) = True And $curRowExistedTable > 0	Then
 ;~ 			_ArrayDisplay($currentLine, '$currentLine')
 ;~ 			_ArrayDisplay($previousLine, '$previousLine')
 ;~ 			$paramPlus = $paramPlus + 1
@@ -44,7 +44,7 @@ Func _DataProcessing ($data, $options)
 
 
 			; define columns name by option 0
-			$table[0][$i1] = $rowOptions[0]	;columnName	; With header
+			$table[0][$curRowExistedTable] = $rowOptions[0]	;columnName	; With header
 
 
 
@@ -52,37 +52,37 @@ Func _DataProcessing ($data, $options)
 			$cell = StringSplit ( $rowOptions[1], "" , 2 )
 			ReDim $cell[UBound($cell)]
 			Local $currentParameterValue = ''
-			For $iii=0 To UBound($cell)-1
+			For $curCellOptions=0 To UBound($cell)-1
 				if $rowOptions[2] = 0 Then
-					$table[1][$i1 - $paramPlus] &= $currentLine[$cell[$iii]]	; With header
-		;~ 			$table[0][$i1 - $paramPlus] &= $currentLine[$cell[$iii]]	; Without header
-					$currentParameterValue &= $currentLine[$cell[$iii]]
+					$table[1][$curRowExistedTable - $paramPlus] &= $currentLine[$cell[$curCellOptions]]	; With header
+		;~ 			$table[0][$curRowExistedTable - $paramPlus] &= $currentLine[$cell[$curCellOptions]]	; Without header
+					$currentParameterValue &= $currentLine[$cell[$curCellOptions]]
 				EndIf
 				if $rowOptions[2] = 1 Then
-					$table[1][$i1 - $paramPlus] &= " " & $currentLine[$cell[$iii]]	; With header
-		;~ 			$table[0][$i1 - $paramPlus] &= " " & $currentLine[$cell[$iii]]	; Without header
-					$currentParameterValue &= " " & $currentLine[$cell[$iii]]
+					$table[1][$curRowExistedTable - $paramPlus] &= " " & $currentLine[$cell[$curCellOptions]]	; With header
+		;~ 			$table[0][$curRowExistedTable - $paramPlus] &= " " & $currentLine[$cell[$curCellOptions]]	; Without header
+					$currentParameterValue &= " " & $currentLine[$cell[$curCellOptions]]
 				EndIf
 				if $rowOptions[2] = 2 Then
-					$table[1][$i1 - $paramPlus] &= "|" & $currentLine[$cell[$iii]]	; With header
-		;~ 			$table[0][$i1 - $paramPlus] &= "|" & $currentLine[$cell[$iii]]	; Without header
-					$currentParameterValue &= " | " & $currentLine[$cell[$iii]]
+					$table[1][$curRowExistedTable - $paramPlus] &= "|" & $currentLine[$cell[$curCellOptions]]	; With header
+		;~ 			$table[0][$curRowExistedTable - $paramPlus] &= "|" & $currentLine[$cell[$curCellOptions]]	; Without header
+					$currentParameterValue &= " | " & $currentLine[$cell[$curCellOptions]]
 				EndIf
 				if $rowOptions[2] = 3 Then
-					$table[1][$i1 - $paramPlus] &= "\n" & $currentLine[$cell[$iii]]	; With header
-		;~ 			$table[0][$i1 - $paramPlus] &= "\n" & $currentLine[$cell[$iii]]	; Without header
-					$currentParameterValue &= "\n" & $currentLine[$cell[$iii]]
+					$table[1][$curRowExistedTable - $paramPlus] &= "\n" & $currentLine[$cell[$curCellOptions]]	; With header
+		;~ 			$table[0][$curRowExistedTable - $paramPlus] &= "\n" & $currentLine[$cell[$curCellOptions]]	; Without header
+					$currentParameterValue &= "\n" & $currentLine[$cell[$curCellOptions]]
 				EndIf
 			Next
 
-	;~ 		MsgBox (0, 'column', $columnName &@CRLF& $table[$i1][1])
+	;~ 		MsgBox (0, 'column', $columnName &@CRLF& $table[$curRowExistedTable][1])
 
 
 
 
 	; What should we do with duplicates according to option 3
-	;~ 		if	$table[1][$i1 - $paramPlus] = $previousParameterValue	Then	; With header
-	;~ 	 	if	$table[0][$i1 - $paramPlus] = $previousParameterValue	Then	; Without header
+	;~ 		if	$table[1][$curRowExistedTable - $paramPlus] = $previousParameterValue	Then	; With header
+	;~ 	 	if	$table[0][$curRowExistedTable - $paramPlus] = $previousParameterValue	Then	; Without header
 	;~ 			$paramPlus = $paramPlus + 1
 	;~ 		EndIf
 			$previousParameterValue = $currentParameterValue
