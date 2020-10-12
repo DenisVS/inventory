@@ -17,13 +17,14 @@ Func _DataProcessing ($data, $options)
 	Local $prevParamVl = ''
 	Local $prevLn
 	Local $paramPlus = 0
-
+	Local $testTable[UBound($data)][6]
 
 	;$crRwExstdTablN	- counter of the rows in existed table
 	;$crCllExstdTblN - counter of the cells in the line of the existed table
 	For $crRwExstdTablN=0 To UBound($data)-1
 		For $crCllExstdTblN=0 To 5
 			$crLn[$crCllExstdTblN] = $data[$crRwExstdTablN][$crCllExstdTblN]
+			$testTable[$crRwExstdTablN][$crCllExstdTblN] = $data[$crRwExstdTablN][$crCllExstdTblN]	; We are saving current line from existed table to array sake of furter compare
 		Next
 		For $crCllExstdTblN=0 To 9
 			$rowOptions[$crCllExstdTblN] = $options[$crRwExstdTablN][$crCllExstdTblN]
@@ -31,20 +32,46 @@ Func _DataProcessing ($data, $options)
 ;~ 		_ArrayDisplay($crLn, '$data')
 ;~ 		_ArrayDisplay($rowOptions, '$rowOptions')
 
+;~ _ArrayDisplay($testTable, '$testTable')
+;~ 				MsgBox (0, 'UBound($testTable)', UBound($testTable))
+
+		;Check if in testTable exists current line of existing data
+		Local $duplicate = False
+		Local $crCllTestTblN
+		Local $crTestLn[6]
+		For $crRwTestTablN=0 To $crRwExstdTablN-1
+			For $crCllTestTblN=0 To 5
+				$crTestLn[$crCllTestTblN] = $testTable[$crRwTestTablN][$crCllTestTblN]
+			Next
+			if  _ArrayCompare($crTestLn, $crLn) = True Then
+;~ 				MsgBox (0, '$crRwTestTablN', $crRwTestTablN)
+
+				$duplicate = True
+				$paramPlus = $paramPlus + 1
+;~ 				_ArrayDisplay($crLn, '$crLn')
+;~ 				_ArrayDisplay($crTestLn, '$crTestLn')
+;~ 				ExitLoop 2
+			EndIf
+		Next
+
+;~ _ArrayDisplay($crLn, '$crLn')
+
+
 
 		; What should we do if the current row equals to a previous
-		if	_ArrayCompare($prevLn, $crLn) = True And $crRwExstdTablN > 0	Then
+;~ 		if	_ArrayCompare($prevLn, $crLn) = True And $crRwExstdTablN > 0	Then
+		if	$duplicate = False Then
 ;~ 			_ArrayDisplay($crLn, '$crLn')
 ;~ 			_ArrayDisplay($prevLn, '$prevLn')
 ;~ 			$paramPlus = $paramPlus + 1
 
-		Else
+;~ 		Else
 	;~ 		MsgBox (0, '$paramPlus ', $paramPlus)
 
 
 
 			; define columns name by option 0
-			$table[0][$crRwExstdTablN] = $rowOptions[0]	;columnName	; With header
+			$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
 
 
 
@@ -89,6 +116,7 @@ Func _DataProcessing ($data, $options)
 			$prevLn = $crLn
 		EndIf
 	Next
-	_ArrayDisplay (  $table , 'Result' )
+	_ArrayDisplay (  $testTable , 'test Table' )
+	_ArrayDisplay (  $table , '$table' )
 	Return $table
 EndFunc
