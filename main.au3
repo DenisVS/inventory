@@ -16,6 +16,7 @@
 #include "WideRedim.au3"
 #include "DataProcessing.au3"
 #include "CSVSplit.au3"
+#include "ArrayCompare.au3"
 ;~ #include <HTTP.au3>
 ;~ #include <MAC.au3>
 ;~ #include "JSON.au3"
@@ -135,7 +136,7 @@ ReDim $options[UBound($collectedData)][10]
 ;~ _ArrayDisplay($collectedData, 'OUT')
 ;~ _ArrayDisplay($options, 'OUT')
 $result = _DataProcessing ($collectedData, $options)
-;~ _ArrayDisplay($result, 'result')
+_ArrayDisplay($result, 'result')
 
 
 $csvOutcome = _ArrayToCSV($result)
@@ -175,4 +176,3 @@ EndIf
 
 
 
-Exit
