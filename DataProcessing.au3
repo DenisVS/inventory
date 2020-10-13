@@ -29,11 +29,6 @@ Func _DataProcessing ($data, $options)
 		For $crCllExstdTblN=0 To 9
 			$rowOptions[$crCllExstdTblN] = $options[$crRwExstdTablN][$crCllExstdTblN]
 		Next
-;~ 		_ArrayDisplay($crLn, '$data')
-;~ 		_ArrayDisplay($rowOptions, '$rowOptions')
-
-;~ _ArrayDisplay($testTable, '$testTable')
-;~ 				MsgBox (0, 'UBound($testTable)', UBound($testTable))
 
 		;Check if in testTable exists current line of existing data
 		Local $duplicate = False
@@ -48,14 +43,11 @@ Func _DataProcessing ($data, $options)
 
 				$duplicate = True
 				$paramPlus = $paramPlus + 1
-;~ 				_ArrayDisplay($crLn, '$crLn')
-;~ 				_ArrayDisplay($crTestLn, '$crTestLn')
-;~ 				ExitLoop 2
+				ExitLoop 1
 			EndIf
 		Next
 
-
-		; What should we do if the current row equals to a previous
+		; What should we do if the current row equals to a previous somewhere
 		if	$duplicate = False Then
 
 			; define columns name by option 0
@@ -89,7 +81,6 @@ Func _DataProcessing ($data, $options)
 			Next
 
 			; What should we do with duplicates according to option 3
-
 
 
 

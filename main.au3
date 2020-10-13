@@ -50,8 +50,6 @@ Local $options[$dimensionOfData][10]
 ;loop for file reading  --------------------------
 
 
-
-
 $outRow = 0	;counter
 While 1
  	$skipCsvRow = False
@@ -61,29 +59,18 @@ While 1
 	$currentLineAsArray = _CSVString2array($CurrentLineContent , $separator = ',', $enclose = '"' )
 	if UBound($currentLineAsArray) < 6 Then $skipCsvRow = True
 	$skipCurrentString = _StringFilter($CurrentLineContent)
-
-;~ 	_LogaDebug ('$CurrentLineContent: ' & $CurrentLineContent)
-;	_ArrayDisplay (  $currentLineAsArray , "current Line As Array" )
-
 	If $skipCsvRow  = False  And $skipCurrentString = False Then
 		;By parameters
 		For $i=0 To UBound($parameters)-1
-			;MsgBox(0,'$parameters[n]',$parameters[$i])
 			$currentParameter = _CSVString2array( $parameters[$i], ',', '"' )
-			;_ArrayDisplay (  $currentParameter , "Array $currentParameter" )
 			Local $parameterMatched = TRUE
-
 			if UBound($currentParameter) < 6  Then ; if unconditional line
 				$parameterMatched = FALSE
 			EndIf
 			;By parameter cells
 			If $parameterMatched = TRUE Then	; if not unconditional line, parse it
 				For $ii=0 To 5	;tentetive
-					;MsgBox(0,'$currentParameter',$currentParameter[$ii])
-					;MsgBox(0,'StringLen',StringLen($currentParameter[$ii]))
 					If StringLen($currentParameter[$ii]) >0 Then
-		;~ 				_LogaDebug( '$currentParameter[$ii] ' & $currentParameter[$ii])
-		;~ 				_LogaDebug( '$currentLineAsArray[$ii] ' & $currentLineAsArray[$ii])
 						if Not($currentParameter[$ii] = $currentLineAsArray[$ii]) Then
 							$parameterMatched = FALSE
 						EndIf
@@ -97,19 +84,11 @@ While 1
 					Next
 				EndIf
 			EndIf
-;~ 			if $ii < 6  Then ; Probably if unconditional line (now upper)
-;~ 				$parameterMatched = FALSE
-;~ 			EndIf
-			if $parameterMatched = TRUE Then
-;~ 	 			_ArrayDisplay (  $currentLineAsArray , 'Matched string' )
-;~ 	 			_ArrayDisplay (  $currentParameter , 'With Parameter' )
 
-;~ 				For $iii=0 To UBound($currentParameter)-1
+			if $parameterMatched = TRUE Then
 				For $iii=0 To 5
 					$collectedData[$outRow][$iii] = $currentLineAsArray[$iii]
 				Next
-;~ 				MsgBox (0, UBound('D'), UBound($currentParameter)&' '& $iii)
-
 				if $iii < UBound($currentParameter) Then
 					For $iii=$iii To UBound($currentParameter)-1
 						$options[$outRow][$iii-6] = $currentParameter[$iii]
