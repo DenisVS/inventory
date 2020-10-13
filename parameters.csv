@@ -20,8 +20,8 @@ Overclock,,CPU Properties,0,CPUID CPU Name,,CPU,5,1
 Overclock,,CPU Properties,0,CPUID Revision,,CPU Revision,5,1
 Sensor,,Temperatures,0,,,Temperatures,45,1
 SMART,,AD,11,Data,,SMART,5,1
-Printers,,Printer Properties,,Default Printer,Yes,Printer,2,1
-Installed Programs,,,,Version,,Software,25,1
+Printers,,Printer Properties,,Default Printer,Yes,Printer,1,1
+Installed Programs,,,,Version,,Software,15,1
 Anti-Virus,,,,Software Version,,Anti-Virus,25,1
 Operating System,,License Information,,Registered Owner,,Owner,5,1
 Operating System,,License Information,,Registered Organization,,Organization,5,1

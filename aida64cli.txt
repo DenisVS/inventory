@@ -19,3 +19,7 @@ AIDA64 /R \\server\share\folder\$HOSTNAME /CSV /AUDIT /SILENT /SAFE
 
 
 aida64.exe /R Rep.csv /CSV /LANGEN /SILENT /SUM /HW /SW /AUDIT
+
+
+*That's works
+aida64.exe /R c:\PF\Rep.csv   /CUSTOM C:\PF\Aida6biz-lite\aida64.rpf  /csv
