@@ -54,26 +54,12 @@ Func _DataProcessing ($data, $options)
 			EndIf
 		Next
 
-;~ _ArrayDisplay($crLn, '$crLn')
-
-
 
 		; What should we do if the current row equals to a previous
-;~ 		if	_ArrayCompare($prevLn, $crLn) = True And $crRwExstdTablN > 0	Then
 		if	$duplicate = False Then
-;~ 			_ArrayDisplay($crLn, '$crLn')
-;~ 			_ArrayDisplay($prevLn, '$prevLn')
-;~ 			$paramPlus = $paramPlus + 1
-
-;~ 		Else
-	;~ 		MsgBox (0, '$paramPlus ', $paramPlus)
-
-
 
 			; define columns name by option 0
 			$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
-
-
 
 			; define columns from which we get the parameters
 			$cell = StringSplit ( $rowOptions[1], "" , 2 )
@@ -102,16 +88,12 @@ Func _DataProcessing ($data, $options)
 				EndIf
 			Next
 
-	;~ 		MsgBox (0, 'column', $columnName &@CRLF& $table[$crRwExstdTablN][1])
+			; What should we do with duplicates according to option 3
 
 
 
 
-	; What should we do with duplicates according to option 3
-	;~ 		if	$table[1][$crRwExstdTablN - $paramPlus] = $prevParamVl	Then	; With header
-	;~ 	 	if	$table[0][$crRwExstdTablN - $paramPlus] = $prevParamVl	Then	; Without header
-	;~ 			$paramPlus = $paramPlus + 1
-	;~ 		EndIf
+
 			$prevParamVl = $crParamVl
 			$prevLn = $crLn
 		EndIf
