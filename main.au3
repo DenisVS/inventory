@@ -96,6 +96,8 @@ While 1
 				EndIf
 ;~ 				MsgBox (0, UBound($currentLineAsArray), UBound($currentLineAsArray))
 				$outRow = $outRow + 1
+;~ 				_ArrayDisplay($currentParameter, '$currentParameter')
+
 			EndIf
 
 			$collectedData = _WideRedim ($collectedData, $outRow, 6)

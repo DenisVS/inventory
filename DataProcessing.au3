@@ -78,12 +78,14 @@ Func _DataProcessing ($data, $options)
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= "\n" & $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= "\n" & $crLn[$cell[$crCllOpt]]
 				EndIf
-			Next
 
+
+			Next
 			; What should we do with duplicates according to option 3
 
+			if $rowOptions[3] = 4 Then
 
-
+			EndIf
 
 			$prevParamVl = $crParamVl
 			$prevLn = $crLn
