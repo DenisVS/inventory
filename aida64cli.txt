@@ -1,0 +1,21 @@
+/R [reportfile] 
+AIDA64 /R \\server\share\folder\$HOSTNAME /CSV /AUDIT /SILENT /SAFE 
+
+
+    /ALL –  the reports created will include all pages from the page menu.
+    /SUM – the reports created will include only the Computer / Summary page
+    /HW – the reports created will include only the pages listing hardware-related information
+    /SW – the reports created will include only the pages listing software-related information
+    /BENCH – the reports created will include the benchmark pages only.
+    /AUDIT – the reports created will include only the pages required by AIDA64 Audit Manager to compile a network audit and show audit statistics.
+    /CUSTOM [\\Server_IP_address\AIDA64\profile.rpf] – this option loads a customized report profile
+
+
+
+
+/CSV
+
+/LANGEN
+
+
+aida64.exe /R Rep.csv /CSV /LANGEN /SILENT /SUM /HW /SW /AUDIT
