@@ -84,6 +84,8 @@ Func _DataProcessing ($data, $options)
 			; What should we do with duplicates according to option 3
 
 			if $rowOptions[3] = 4 Then
+;~ 				_ArrayDisplay ( $rowOptions, '$rowOptions' )
+;~ 				MsgBox (0, '4', $crRwTestTablN)
 
 			EndIf
 

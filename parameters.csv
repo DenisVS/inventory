@@ -1,32 +1,31 @@
-Report,,,,Operating System,,Operating System,5
-Summary,,Computer,,User Name,,User Name,5,1
-Summary,,Computer,,Logon Domain,,Logon Domain,5,1
-Summary,,Motherboard,,CPU Type,,CPU Type,5,1
-Summary,,Motherboard,,Motherboard Name,,Motherboard,5,1
-Summary,,Motherboard,,Motherboard Chipset,,Chipset,5,1
-Summary,,Motherboard,,System Memory,,Memory,5,1
-Summary,,Motherboard,,BIOS Type,,BIOS,5,1
-Summary,,Display,,Video Adapter,,Videocard,5,1
-Summary,,Display,,Monitor,,Monitor,5,1
-Summary,,Storage,,Disk Drive,, HDD,5,1
-Summary,,Storage,,SMART Hard Disks Status,,SMART,5,1
-Summary,,Partitions,,Total Size,,Partitions,5,1
-Summary,,Partitions,,,,Partition,45,1
-Summary,,Network,,Primary IP Address,,IP,5,1
-Summary,,Network,,Primary MAC Address,,MAC,5,1
-Computer Name,NetBIOS Name,,,Computer Name,,NetBIOS Name,5,1
-Computer Name,Fully Qualified DNS Name,,,Computer Name,,FQDN,5,1
-Overclock,,CPU Properties,0,CPUID CPU Name,,CPU,5,1
-Overclock,,CPU Properties,0,CPUID Revision,,CPU Revision,5,1
-Sensor,,Temperatures,0,,,Temperatures,45,1
+Report,,,,Operating System,,operating_system,5,9
+Summary,,Computer,,User Name,,user_name,5,1,9
+Summary,,Computer,,Logon Domain,,logon_domain,5,1,9
+Summary,,Motherboard,,CPU Type,,cpu_type,5,1,9
+Summary,,Motherboard,,Motherboard Name,,motherboard,5,1,9
+Summary,,Motherboard,,Motherboard Chipset,,chipset,5,1,9
+Summary,,Motherboard,,System Memory,,memory,5,1,9
+Summary,,Motherboard,,BIOS Type,,bios,5,1,9
+Summary,,Display,,Video Adapter,,videocard,5,1,4
+Summary,,Display,,Monitor,,monitor,5,1,4
+Summary,,Storage,,Disk Drive,,hdd,5,1,4
+Summary,,Storage,,SMART Hard Disks Status,,smart,5,1,4
+Summary,,Partitions,,,,partition,45,1,4
+Summary,,Network,,Primary IP Address,,ip,5,1,9
+Summary,,Network,,Primary MAC Address,,mac,5,1,9
+Computer Name,NetBIOS Name,,,Computer Name,,netbios_name,5,1,9
+Computer Name,Fully Qualified DNS Name,,,Computer Name,,fqdn,5,1,9
+Overclock,,CPU Properties,0,CPUID CPU Name,,cpu,5,1,9
+Overclock,,CPU Properties,0,CPUID Revision,,cpu_revision,5,1,5
+Sensor,,Temperatures,0,,,temperatures,45,1
 SMART,,AD,11,Data,,SMART,5,1
-Printers,,Printer Properties,,Default Printer,Yes,Printer,1,1
-Installed Programs,,,,Version,,Software,15,1,4
-Anti-Virus,,,,Software Version,,Anti-Virus,25,1
-Operating System,,License Information,,Registered Owner,,Owner,5,1
-Operating System,,License Information,,Registered Organization,,Organization,5,1
-Operating System,,License Information,,Product ID,,Product ID,5,1
-Operating System,,License Information,,Product Key,,Product Key,5,1
-Operating System,,License Information,,Product Activation (WPA),,Activation,5,1
-Operating System,,Operating System Properties,,OS Installation Date,,OS Installation Date,5,1
-Licenses,,,,,Product Key,25,1
+Printers,,Printer Properties,,Default Printer,Yes,printer,1,1
+Installed Programs,,,,Version,,software,15,1,4
+Anti-Virus,,,,Software Version,,antivirus,25,1
+Operating System,,License Information,,Registered Owner,,owner,5,1
+Operating System,,License Information,,Registered Organization,,organization,5,1
+Operating System,,License Information,,Product ID,,product_id,5,1
+Operating System,,License Information,,Product Key,,product_key,5,1
+Operating System,,License Information,,Product Activation (WPA),,activation,5,1
+Operating System,,Operating System Properties,,OS Installation Date,,os_installation_date,5,1
+Licenses,,,,,licenses,25,1,4

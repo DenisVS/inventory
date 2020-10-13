@@ -2,7 +2,9 @@
 1,parameters from cells:num cells
 2,on multicells of single line:0-concatinate|1-concatinate with spaces|2-concatinate with delimeter|3-concatinate with cr|4-serialized array
 3,on duplicate(multiline identical parameters with different arguments):9-rewrite existed|8-next row|0-concatnate|1-concatinate with spaces|2-concatinate with delimeter|3-concatinate with cr|4-serialized array
+4,do not write next row:existed column name
+///4 to write into conventional table_name, or specific parameter?
 
 
+///5,??? on multiline identical parameters with different arguments:0-next line|1-put into previous cell after cr/lf|2-put into previous cell with with exist value in array
 
-4,on multiline identical parameters with different arguments:0-next line|1-put into previous cell after cr/lf|2-put into previous cell with with exist value in array
