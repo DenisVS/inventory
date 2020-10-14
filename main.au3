@@ -118,12 +118,12 @@ ReDim $options[UBound($collectedData)][10]
 ;~ _ArrayDisplay($collectedData, 'OUT')
 ;~ _ArrayDisplay($options, 'OUT')
 $result = _DataProcessing ($collectedData, $options)
-_ArrayDisplay($result, 'result')
+;~ _ArrayDisplay($result, 'result')
 
 
 $csvOutcome = _ArrayToCSV($result, Default);, @CRLF
 ;~ FileWrite ( "test.csv", $csvOutcome )
-MsgBox (0, '$csvOutcome', $csvOutcome)
+;~ MsgBox (0, '$csvOutcome', $csvOutcome)
 
 
 ;~ $csvOutcome =  _Encoding_StringToUTF8($csvOutcome)

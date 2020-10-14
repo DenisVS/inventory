@@ -68,6 +68,11 @@ Func _DataProcessing ($data, $options)
 			Local $crParamVl = ''
 			Local $paramVal = ''
 			For $crCllOpt=0 To UBound($cell)-1
+				if $rowOptions[2] = "" Then
+					$paramVal = $crLn[$cell[$crCllOpt]]	; With header
+		;~ 			$table[0][$crRwExstdTablN - $paramPlus] = $crLn[$cell[$crCllOpt]]	; Without header
+					$crParamVl = $crLn[$cell[$crCllOpt]]
+				EndIf
 				if $rowOptions[2] = 0 Then
 					$paramVal &= $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= $crLn[$cell[$crCllOpt]]	; Without header
@@ -92,7 +97,6 @@ Func _DataProcessing ($data, $options)
 
 			Next
 
-
 			if $iIndex >= 0	Then
 				$table[1][$iIndex] = $table[1][$iIndex] & "\n" & $paramVal
 				$paramPlus = $paramPlus + 1
@@ -102,7 +106,6 @@ Func _DataProcessing ($data, $options)
 				$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
 				$table[1][$crRwExstdTablN - $paramPlus] = $paramVal
 			EndIf
-
 			$prevParamVl = $crParamVl
 			$prevLn = $crLn
 		EndIf
