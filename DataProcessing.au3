@@ -50,6 +50,16 @@ Func _DataProcessing ($data, $options)
 		; What should we do if the current row equals to a previous somewhere
 		if	$duplicate = False Then
 
+			; What should we do with duplicates according to option 3
+			Local $iIndex = -1
+			if $rowOptions[3] = 4 Then
+				; In which column the same header cell?
+				$iIndex = _ArraySearch($table, $rowOptions[0], 0, 0, 0, 0, 0, Default, True)
+			EndIf
+
+
+
+
 			; define columns name by option 0
 			$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
 
@@ -57,37 +67,41 @@ Func _DataProcessing ($data, $options)
 			$cell = StringSplit ( $rowOptions[1], "" , 2 )
 			ReDim $cell[UBound($cell)]
 			Local $crParamVl = ''
+			Local $paramVal = ''
 			For $crCllOpt=0 To UBound($cell)-1
 				if $rowOptions[2] = 0 Then
-					$table[1][$crRwExstdTablN - $paramPlus] &= $crLn[$cell[$crCllOpt]]	; With header
+					$paramVal &= $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= $crLn[$cell[$crCllOpt]]
 				EndIf
 				if $rowOptions[2] = 1 Then
-					$table[1][$crRwExstdTablN - $paramPlus] &= " " & $crLn[$cell[$crCllOpt]]	; With header
+					$paramVal &= " " & $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= " " & $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= " " & $crLn[$cell[$crCllOpt]]
 				EndIf
 				if $rowOptions[2] = 2 Then
-					$table[1][$crRwExstdTablN - $paramPlus] &= "|" & $crLn[$cell[$crCllOpt]]	; With header
+					$paramVal &= "|" & $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= "|" & $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= " | " & $crLn[$cell[$crCllOpt]]
 				EndIf
 				if $rowOptions[2] = 3 Then
-					$table[1][$crRwExstdTablN - $paramPlus] &= "\n" & $crLn[$cell[$crCllOpt]]	; With header
+					$paramVal &= "\n" & $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= "\n" & $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= "\n" & $crLn[$cell[$crCllOpt]]
 				EndIf
 
 
 			Next
-			; What should we do with duplicates according to option 3
+			$table[1][$crRwExstdTablN - $paramPlus] = $paramVal
 
-			if $rowOptions[3] = 4 Then
+
+			if $iIndex >= 0	Then
 ;~ 				_ArrayDisplay ( $rowOptions, '$rowOptions' )
-;~ 				MsgBox (0, '4', $crRwTestTablN)
-
+;~ 				_ArrayDisplay ( $table, '$table' )
+;~ 				MsgBox (0, '4', $iIndex)
+;~ 				$table[1][$iIndex] = $table[1][$iIndex] & @CRLF &
 			EndIf
+
 
 			$prevParamVl = $crParamVl
 			$prevLn = $crLn
