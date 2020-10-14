@@ -18,6 +18,7 @@
 #include "CSVSplit.au3"
 #include "ArrayCompare.au3"
 #include "Encoding.au3"
+#include "StringTrimmer.au3"
 ;~ #include <HTTP.au3>
 ;~ #include <MAC.au3>
 ;~ #include "JSON.au3"

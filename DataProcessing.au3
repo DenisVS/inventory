@@ -69,9 +69,9 @@ Func _DataProcessing ($data, $options)
 			Local $paramVal = ''
 			For $crCllOpt=0 To UBound($cell)-1
 				if $rowOptions[2] = "" Then
-					$paramVal = $crLn[$cell[$crCllOpt]]	; With header
+					$paramVal = ""	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] = $crLn[$cell[$crCllOpt]]	; Without header
-					$crParamVl = $crLn[$cell[$crCllOpt]]
+;~ 					$crParamVl = $crLn[$cell[$crCllOpt]]
 				EndIf
 				if $rowOptions[2] = 0 Then
 					$paramVal &= $crLn[$cell[$crCllOpt]]	; With header
@@ -86,19 +86,19 @@ Func _DataProcessing ($data, $options)
 				if $rowOptions[2] = 2 Then
 					$paramVal &= "|" & $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= "|" & $crLn[$cell[$crCllOpt]]	; Without header
-					$crParamVl &= " | " & $crLn[$cell[$crCllOpt]]
+					$crParamVl &= "|" & $crLn[$cell[$crCllOpt]]
 				EndIf
 				if $rowOptions[2] = 3 Then
 					$paramVal &= "\n" & $crLn[$cell[$crCllOpt]]	; With header
 		;~ 			$table[0][$crRwExstdTablN - $paramPlus] &= "\n" & $crLn[$cell[$crCllOpt]]	; Without header
 					$crParamVl &= "\n" & $crLn[$cell[$crCllOpt]]
 				EndIf
-
+$paramVal = Trim($paramVal)
 
 			Next
 
 			if $iIndex >= 0	Then
-				$table[1][$iIndex] = $table[1][$iIndex] & "\n" & $paramVal
+				$table[1][$iIndex] = $table[1][$iIndex] & "|" & $paramVal
 				$paramPlus = $paramPlus + 1
 ;~ 				_ArrayDisplay (  $table , '$table' )
 			Else
