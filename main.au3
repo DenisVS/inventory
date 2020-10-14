@@ -10,13 +10,14 @@
 #include "csvString2array.au3"
 #include <file.au3>
 #include "fileRead.au3"
-#include "Loga.au3"
+;~ #include "Loga.au3"
 #include "StringFilter.au3"
 #include "ArrayDeleteEmptyRows.au3"
 #include "WideRedim.au3"
 #include "DataProcessing.au3"
 #include "CSVSplit.au3"
 #include "ArrayCompare.au3"
+#include "Encoding.au3"
 ;~ #include <HTTP.au3>
 ;~ #include <MAC.au3>
 ;~ #include "JSON.au3"
@@ -120,9 +121,23 @@ $result = _DataProcessing ($collectedData, $options)
 _ArrayDisplay($result, 'result')
 
 
-$csvOutcome = _ArrayToCSV($result)
+$csvOutcome = _ArrayToCSV($result, Default);, @CRLF
 ;~ FileWrite ( "test.csv", $csvOutcome )
 MsgBox (0, '$csvOutcome', $csvOutcome)
+
+
+;~ $csvOutcome =  _Encoding_StringToUTF8($csvOutcome)
+
+MsgBox (0, '$csvOutcome', $csvOutcome)
+
+
+
+
+
+;~ $file = FileOpen("out.csv", 2) ; The value of 2 overwrites the file if it already exists
+;~ FileWrite($file, $csvOutcome)
+;~ FileClose($file)
+
 
 
 ;~ dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd
@@ -147,9 +162,10 @@ If $oStatusCode <> 200 then
  MsgBox(4096, "Response code", $oStatusCode)
 EndIf
 
-	_LogaDebug ($oReceived)
+;~ 	_LogaDebug ($oReceived)
 ; Saves the body response regardless of the Response code
 ;~  $file = FileOpen("Received.log", 2) ; The value of 2 overwrites the file if it already exists
+ConsoleWrite($oReceived)
 ;~  FileWrite($file, $oReceived)
 ;~  FileClose($file)
 ;~ dddddddddddddddddddddddddddddddddddddddddddddddddddddddddd

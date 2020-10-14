@@ -38,7 +38,7 @@ Func _ArrayCompare (Const ByRef $array1, Const ByRef $array2)
                ; Evaluate the string
                $arrayMatch = Execute ("$array1" & $evaluationString & " = $array2" & $evaluationString)
 
-               ConsoleWrite ($evaluationString & " : " & $arrayMatch & @CRLF)
+;~               ConsoleWrite ($evaluationString & " : " & $arrayMatch & @CRLF)
             Else
                ; Call the function for the next dimension
                $dimension += 1

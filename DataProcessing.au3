@@ -108,7 +108,7 @@ Func _DataProcessing ($data, $options)
 		EndIf
 	Next
 	ReDim $table[UBound($table)][UBound($data)-$paramPlus]
-	_ArrayDisplay (  $testTable , 'test Table' )
-	_ArrayDisplay (  $table , '$table' )
+;~ 	_ArrayDisplay (  $testTable , 'test Table' )
+;~ 	_ArrayDisplay (  $table , '$table' )
 	Return $table
 EndFunc
