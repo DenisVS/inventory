@@ -55,13 +55,12 @@ Func _DataProcessing ($data, $options)
 			if $rowOptions[3] = 4 Then
 				; In which column the same header cell?
 				$iIndex = _ArraySearch($table, $rowOptions[0], 0, 0, 0, 0, 0, Default, True)
+
 			EndIf
 
 
 
 
-			; define columns name by option 0
-			$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
 
 			; define columns from which we get the parameters
 			$cell = StringSplit ( $rowOptions[1], "" , 2 )
@@ -92,16 +91,17 @@ Func _DataProcessing ($data, $options)
 
 
 			Next
-			$table[1][$crRwExstdTablN - $paramPlus] = $paramVal
 
 
 			if $iIndex >= 0	Then
-;~ 				_ArrayDisplay ( $rowOptions, '$rowOptions' )
-;~ 				_ArrayDisplay ( $table, '$table' )
-;~ 				MsgBox (0, '4', $iIndex)
-;~ 				$table[1][$iIndex] = $table[1][$iIndex] & @CRLF &
+				$table[1][$iIndex] = $table[1][$iIndex] & "\n" & $paramVal
+				$paramPlus = $paramPlus + 1
+;~ 				_ArrayDisplay (  $table , '$table' )
+			Else
+				; define columns name by option 0
+				$table[0][$crRwExstdTablN - $paramPlus] = $rowOptions[0]	;columnName	; With header
+				$table[1][$crRwExstdTablN - $paramPlus] = $paramVal
 			EndIf
-
 
 			$prevParamVl = $crParamVl
 			$prevLn = $crLn
