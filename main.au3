@@ -22,7 +22,7 @@
 ;~ #include <HTTP.au3>
 ;~ #include <MAC.au3>
 ;~ #include "JSON.au3"
-#RequireAdmin
+;~ #RequireAdmin
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
@@ -44,7 +44,7 @@ Local $parameters
 ;-------------------- body of the script
 
 ; Run Aida
-RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
+;~ RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 
 
 
@@ -52,7 +52,7 @@ RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigF
 
 
 
-
+MsgBox (0, '$parameters', $parameters)
 _FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
 ;~ _ArrayDisplay (  $parameters , "ArrayDisplay" )
 $aidaReportFile = _FileRead ($aidaReportFileName) ; handle for aida file
@@ -132,6 +132,10 @@ $collectedData = _DeleteEmptyRows($collectedData)
 ReDim $options[UBound($collectedData)][10]
 ;~ _ArrayDisplay($collectedData, 'OUT')
 ;~ _ArrayDisplay($options, 'OUT')
+
+
+
+
 $result = _DataProcessing ($collectedData, $options)
 ;~ _ArrayDisplay($result, 'result')
 
