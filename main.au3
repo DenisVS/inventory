@@ -22,14 +22,18 @@
 ;~ #include <HTTP.au3>
 ;~ #include <MAC.au3>
 ;~ #include "JSON.au3"
-
+#RequireAdmin
 
 ; Predefined variables ---------------------
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
 ;~ #AutoIt3Wrapper_Run_Debug_Mode=Y
 $parametersFileName = "parameters.csv"
-$aidaReportFileName = "Report.csv"
+;~ $aidaReportFileName = "Report.csv"
+$aidaReportFileName = @TempDir & "\Report.csv"
 ;$aidaReportFileName = "C:" & "\report.csv"
+$aidaConfigFileName = 'C:\PF\Aida6biz\aida64.rpf'
+$aidaExecute = 'C:\PF\Aida6biz\aida64.exe'
+$aidaDir = 'C:\PF\Aida6biz\'
 
 ;declaration -------------------------------------
 Local $CurrentLineContent
@@ -38,6 +42,16 @@ Local $enclose
 Local $parameters
 
 ;-------------------- body of the script
+
+; Run Aida
+RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
+
+
+
+
+
+
+
 
 _FileReadToArray($parametersFileName, $parameters, $FRTA_NOCOUNT)
 ;~ _ArrayDisplay (  $parameters , "ArrayDisplay" )
@@ -173,4 +187,6 @@ ConsoleWrite($oReceived)
 
 
 
+
+FileDelete ($aidaReportFileName)
 
