@@ -44,27 +44,21 @@
 	; Run Aida
 	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 ;~ 	$aProgressClose = ProcessWait($aRunw)
-
+	GUICtrlSetBkColor($idInformation, 0x7777AA)
+	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ О ПК, ЖДИТЕ")
 	; Run data parsing
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
 
 	_ArrayDisplay($data, 'OUT')
 
 
-
+;~ 	$aProgressClose = ProcessWait($aRunw)
+	GUICtrlSetBkColor($idInformation, 0x00FF00)
+	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ ЗАВЕРШЕНА")
 
     Local $idButton_Submit = GUICtrlCreateButton("Отправить на сервер", 180, 470, 150, 25)
-
-
-
-
-
-
-Local $idButton_Save = GUICtrlCreateButton("Сохранить на стол", 500, 470, 150, 25)
-
-
-
-;~     Local $hChild = GUICreate("", 210, 72, 20, 15, $WS_POPUP, BitOR($WS_EX_LAYERED, $WS_EX_MDICHILD), $hGUI)
+	Local $idButton_Save = GUICtrlCreateButton("Сохранить на стол", 500, 470, 150, 25)
+	;~     Local $hChild = GUICreate("", 210, 72, 20, 15, $WS_POPUP, BitOR($WS_EX_LAYERED, $WS_EX_MDICHILD), $hGUI)
 
     ; Create a picture control with a transparent image.
     GUICtrlCreatePic($sFilePath, 0, 0, 210, 72)
@@ -79,7 +73,16 @@ Local $idButton_Save = GUICtrlCreateButton("Сохранить на стол", 5
                 ExitLoop
 
             Case $GUI_EVENT_CLOSE, $idButton_Submit
-				_HttpPost($data)
+				if _HttpPost($data) = True Then
+					GUICtrlSetBkColor($idInformation, 0x00FF00)
+					GUICtrlSetData($idInformation, "ИНФОРМАЦИЯ ОТПРАВЛЕНА НА СЕРВЕР")
+				Else
+					GUICtrlSetBkColor($idInformation, 0xFF0000)
+					GUICtrlSetData($idInformation, "ПИЗДА ПРИСНИЛАСЬ")
+				EndIf
+
+
+
 ;~              ExitLoop
 
             Case $idButton_Save
@@ -95,6 +98,10 @@ Local $idButton_Save = GUICtrlCreateButton("Сохранить на стол", 5
 
 				GUICtrlSetBkColor($idInformation, 0x00FF00)
 				GUICtrlSetData($idInformation, "Сбор информации завершён")
+
+
+
+
 
         EndSwitch
     WEnd
