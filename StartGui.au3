@@ -49,7 +49,7 @@
 	; Run data parsing
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
 
-	_ArrayDisplay($data, 'OUT')
+;~ 	_ArrayDisplay($data, 'OUT')
 
 
 ;~ 	$aProgressClose = ProcessWait($aRunw)

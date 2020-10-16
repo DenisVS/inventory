@@ -31,18 +31,28 @@
 ;~ AutoItSetOption ("TrayIconDebug", 1);0-off
 ;~ #AutoIt3Wrapper_Run_Debug_Mode=Y
 $parametersFileName = "parameters.csv"
+$parametersFileName = @TempDir & "\inventory\conf\parameters.csv"
 ;~ $aidaReportFileName = "Report.csv"
-$aidaReportFileName = @TempDir & "\Report.csv"
+$aidaReportFileName = @TempDir & "\inventory\Report.csv"
 ;$aidaReportFileName = "C:" & "\report.csv"
-$aidaConfigFileName = 'C:\PF\Aida6biz\aida64.rpf'
-$aidaExecute = 'C:\PF\Aida6biz\aida64.exe'
-$aidaDir = 'C:\PF\Aida6biz\'
-
+;~ $aidaConfigFileName = 'C:\PF\Aida6biz\aida64.rpf'
+;~ $aidaConfigFileName = 'C:\PF\Aida6biz-lite\aida64.rpf'
+$aidaConfigFileName = @TempDir & "\inventory\Aida6biz-lite\aida64.rpf"
+;~ $aidaExecute = 'C:\PF\Aida6biz\aida64.exe'
+;~ $aidaExecute = 'C:\PF\Aida6biz-lite\aida64.exe'
+$aidaExecute = @TempDir & "\inventory\Aida6biz-lite\aida64.exe"
+;~ $aidaDir = 'C:\PF\Aida6biz\'
+;~ $aidaDir = 'C:\PF\Aida6biz-lite\'
+$aidaDir = @TempDir & "\inventory\Aida6biz-lite\"
 
 ;------- Includes fn (Run) -----------
+
+
+FileDelete ($aidaReportFileName)
+#include <Install.au3>
+;~ Exit
 #include <StartGui.au3>
-
-
+FileDelete ($aidaReportFileName)
 
 
 
