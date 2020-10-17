@@ -5,34 +5,33 @@
     GUICtrlCreatePic("..\GUI\msoobe.jpg", 0, 0, 400, 100)
 
 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
-	 Local $idFile = GUICtrlCreateInput("", 150, 30, 300, 20)
+	 Local $deparament = GUICtrlCreateInput("", 150, 30, 300, 20)
 
 	GUICtrlCreateLabel("Ф.И.О. пользователя", 5, 60) ; next line
-
     ;GUICtrlSetState(-1, $GUI_DROPACCEPTED)
-    GUICtrlCreateInput("", 150, 60, 300, 20) ; will not accept drag&drop files
+    Local $fullUserName = GUICtrlCreateInput("", 150, 60, 300, 20) ; will not accept drag&drop files
 
 
 	GUICtrlCreateLabel("Телефон пользователя", 5, 90) ; next line
-    GUICtrlCreateInput("", 150, 90, 300, 20)
+	Local $phone = GUICtrlCreateInput("", 150, 90, 300, 20)
 
 	GUICtrlCreateLabel("Логин администратора", 5, 120) ; next line
-    GUICtrlCreateInput("", 150, 120, 300, 20)
+    Local $adminLogin = GUICtrlCreateInput("", 150, 120, 300, 20)
 
 	GUICtrlCreateLabel("Пароль администратора", 5, 150) ; next line
-    GUICtrlCreateInput("", 150, 150, 300, 20)
+    Local $adminPassword = GUICtrlCreateInput("", 150, 150, 300, 20)
 
 	GUICtrlCreateLabel("Логин пользователя", 5, 180) ; next line
-    GUICtrlCreateInput("", 150, 180, 300, 20)
+    Local $userLogin = GUICtrlCreateInput("", 150, 180, 300, 20)
 
 	GUICtrlCreateLabel("Пароль пользователя", 5, 210) ; next line
-    GUICtrlCreateInput("", 150, 210, 300, 20)
+    Local $userPassword =GUICtrlCreateInput("", 150, 210, 300, 20)
 
 	GUICtrlCreateLabel("Куда подключен ПК", 5, 240) ; next line
-    GUICtrlCreateInput("", 150, 240, 300, 20)
+	Local $connectedTo = GUICtrlCreateInput("", 150, 240, 300, 20)
 
 	GUICtrlCreateLabel("Примечания", 5, 270) ; next line
-	GUICtrlCreateEdit("", 150, 270, 300, 97, $ES_AUTOVSCROLL + $WS_VSCROLL)
+	Local $remarks = GUICtrlCreateEdit("", 150, 270, 300, 97, $ES_AUTOVSCROLL + $WS_VSCROLL)
 
 	;Local $idProgressbar2 = GUICtrlCreateProgress(300, 520, 200, 20, $PBS_SMOOTH)
 	Local $idInformation = GUICtrlCreateLabel("СБОР ИНФОРМАЦИИ О ПК, ЖДИТЕ", 300, 420 )
@@ -44,7 +43,7 @@
 	; Run Aida
 	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 ;~ 	$aProgressClose = ProcessWait($aRunw)
-	GUICtrlSetBkColor($idInformation, 0x7777AA)
+	GUICtrlSetBkColor($idInformation, 0xFFFF00)
 	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ О ПК, ЖДИТЕ")
 	; Run data parsing
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
@@ -73,6 +72,7 @@
                 ExitLoop
 
             Case $GUI_EVENT_CLOSE, $idButton_Submit
+				#include "Gui2Data.au3"
 				if _HttpPost($data) = True Then
 					GUICtrlSetBkColor($idInformation, 0x00FF00)
 					GUICtrlSetData($idInformation, "ИНФОРМАЦИЯ ОТПРАВЛЕНА НА СЕРВЕР")
