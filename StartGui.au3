@@ -41,12 +41,27 @@
     GUISetState(@SW_SHOW, $hGUI)
 
 	; Run Aida
-	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
+;~ 	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 ;~ 	$aProgressClose = ProcessWait($aRunw)
 	GUICtrlSetBkColor($idInformation, 0xFFFF00)
 	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ О ПК, ЖДИТЕ")
 	; Run data parsing
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
+
+
+;---------------------------------
+
+For $columnsCounter=0 To UBound($data, $UBOUND_COLUMNS) - 1
+	if $data[0][$columnsCounter] = 'user_name' Then
+		GUICtrlSetData($userLogin, $data[1][$columnsCounter])
+;~ 	MsgBox(0,'$parameters',$parameters[$i])
+        ;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
+		EndIf
+Next
+
+
+
+;------------------------------
 
 ;~ 	_ArrayDisplay($data, 'OUT')
 
@@ -72,8 +87,8 @@
                 ExitLoop
 
             Case $GUI_EVENT_CLOSE, $idButton_Submit
-				$data = _ArrayToCSV($data, Default);
 				#include "Gui2Data.au3"
+				$data = _ArrayToCSV($data, Default);
 				if _HttpPost($data) = True Then
 					GUICtrlSetBkColor($idInformation, 0x00FF00)
 					GUICtrlSetData($idInformation, "ИНФОРМАЦИЯ ОТПРАВЛЕНА НА СЕРВЕР")

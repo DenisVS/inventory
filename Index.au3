@@ -48,11 +48,11 @@ $aidaDir = @TempDir & "\inventory\Aida6biz-lite\"
 ;------- Includes fn (Run) -----------
 
 
-FileDelete ($aidaReportFileName)
+;~ FileDelete ($aidaReportFileName)
 #include <Install.au3>
 ;~ Exit
 #include <StartGui.au3>
-FileDelete ($aidaReportFileName)
+;~ FileDelete ($aidaReportFileName)
 
 
 
