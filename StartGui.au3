@@ -72,6 +72,7 @@
                 ExitLoop
 
             Case $GUI_EVENT_CLOSE, $idButton_Submit
+				$data = _ArrayToCSV($data, Default);
 				#include "Gui2Data.au3"
 				if _HttpPost($data) = True Then
 					GUICtrlSetBkColor($idInformation, 0x00FF00)

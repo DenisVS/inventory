@@ -94,7 +94,7 @@ Func _ParseData($parametersFileName, $aidaReportFileName)
 	$collectedData = _DataProcessing ($collectedData, $options)
 ;~ 	_ArrayDisplay($collectedData, 'collectedData')
 
-	$collectedData = _ArrayToCSV($collectedData, Default);, @CRLF
+
 
 ;~ 	MsgBox (0, 'csv Outcome', $collectedData)
 	Return $collectedData
