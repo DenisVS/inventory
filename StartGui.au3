@@ -139,6 +139,10 @@ Next
     GUISetState(@SW_SHOW)
 
 
+	$columnsCounter = UBound($data, $UBOUND_COLUMNS)
+	ReDim $data[2][$columnsCounter+10]
+
+
 
 	; Loop until the user exits.
     While 1
@@ -148,8 +152,8 @@ Next
 
             Case $GUI_EVENT_CLOSE, $idButton_Submit
 				#include "Gui2Data.au3"
-				$data = _ArrayToCSV($data, Default);
-				if _HttpPost($data) = True Then
+				$csv = _ArrayToCSV($data, Default);
+				if _HttpPost($csv) = True Then
 					GUICtrlSetBkColor($idInformation, 0x00FF00)
 					GUICtrlSetData($idInformation, "ИНФОРМАЦИЯ ОТПРАВЛЕНА НА СЕРВЕР")
 				Else
@@ -162,13 +166,15 @@ Next
 ;~              ExitLoop
 
             Case $idButton_Save
+				#include "Gui2Data.au3"
+				$csv = _ArrayToCSV($data, Default);
 				; List all the files in the current script directory.
 ;~ 				Local $aScriptDir = _FileListToArray(@ScriptDir)
 				; Create a file in the users %TEMP% directory.
 				Local $sFilePath = @DesktopDir & "\Report.csv"
 				; Write array to a file by passing the file name.
 				Local $sDelimiter
-				_FileWriteFromArray($sFilePath, $data, 0, Default,$sDelimiter = ",")
+				_FileWriteFromArray($sFilePath, $csv, 0, Default,$sDelimiter = ",")
 				; Display the file.
 ;~ 				ShellExecute($sFilePath)
 

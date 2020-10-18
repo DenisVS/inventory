@@ -7,9 +7,6 @@
 ;------------------------
 
 
-	$columnsCounter = UBound($data, $UBOUND_COLUMNS)
-	ReDim $data[2][$columnsCounter+10]
-
 
 
 ;-----------------------
@@ -47,4 +44,4 @@
 ;~ 	MsgBox(0,'$parameters',$parameters[$i])
         ;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
 
-_ArrayDisplay($data)
+;~ _ArrayDisplay($data)
