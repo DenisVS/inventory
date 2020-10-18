@@ -102,17 +102,17 @@ Next
 
             Case $idButton_Save
 				; List all the files in the current script directory.
-				Local $aScriptDir = _FileListToArray(@ScriptDir)
+;~ 				Local $aScriptDir = _FileListToArray(@ScriptDir)
 				; Create a file in the users %TEMP% directory.
 				Local $sFilePath = @DesktopDir & "\Report.csv"
 				; Write array to a file by passing the file name.
 				Local $sDelimiter
-				_FileWriteFromArray($sFilePath, $aScriptDir, 0, Default,$sDelimiter = ",")
+				_FileWriteFromArray($sFilePath, $data, 0, Default,$sDelimiter = ",")
 				; Display the file.
-				ShellExecute($sFilePath)
+;~ 				ShellExecute($sFilePath)
 
 				GUICtrlSetBkColor($idInformation, 0x00FF00)
-				GUICtrlSetData($idInformation, "Сбор информации завершён")
+				GUICtrlSetData($idInformation, "Файл сохранён")
 
 
 
