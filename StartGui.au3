@@ -41,13 +41,12 @@
     GUISetState(@SW_SHOW, $hGUI)
 
 	; Run Aida
-;~ 	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
-;~ 	$aProgressClose = ProcessWait($aRunw)
+	$aRunw = RunWait($aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 	GUICtrlSetBkColor($idInformation, 0xFFFF00)
 	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ О ПК, ЖДИТЕ")
 	; Run data parsing
+	MsgBox(0,$aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir, $aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
-
 
 ;---------------------------------
 
