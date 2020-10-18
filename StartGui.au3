@@ -4,6 +4,10 @@
     Local $hGUI = GUICreate("Инвентаризация", 800, 550)
     GUICtrlCreatePic("..\GUI\msoobe.jpg", 0, 0, 400, 100)
 
+;----------------------
+
+
+
 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
 	 Local $departament = GUICtrlCreateInput("", 150, 30, 300, 20)
 
@@ -11,24 +15,79 @@
     ;GUICtrlSetState(-1, $GUI_DROPACCEPTED)
     Local $fullUserName = GUICtrlCreateInput("", 150, 60, 300, 20) ; will not accept drag&drop files
 
-
 	GUICtrlCreateLabel("Телефон пользователя", 5, 90) ; next line
 	Local $phone = GUICtrlCreateInput("", 150, 90, 300, 20)
 
-	GUICtrlCreateLabel("Логин администратора", 5, 120) ; next line
-    Local $adminLogin = GUICtrlCreateInput("", 150, 120, 300, 20)
+	GUICtrlCreateLabel("Куда подключен ПК", 5, 120) ; next line
+	Local $connectedTo = GUICtrlCreateInput("", 150, 120, 300, 20)
 
-	GUICtrlCreateLabel("Пароль администратора", 5, 150) ; next line
-    Local $adminPassword = GUICtrlCreateInput("", 150, 150, 300, 20)
+	GUICtrlCreateLabel("Доп. оборудование", 5, 150) ; next line
+	Local $periphery = GUICtrlCreateInput("", 150, 150, 300, 20)
 
-	GUICtrlCreateLabel("Логин пользователя", 5, 180) ; next line
-    Local $userLogin = GUICtrlCreateInput("", 150, 180, 300, 20)
+	GUICtrlCreateLabel("ИБП", 5, 180) ; next line
+	Local $upc = GUICtrlCreateInput("", 150, 180, 300, 20)
 
-	GUICtrlCreateLabel("Пароль пользователя", 5, 210) ; next line
-    Local $userPassword =GUICtrlCreateInput("", 150, 210, 300, 20)
 
-	GUICtrlCreateLabel("Куда подключен ПК", 5, 240) ; next line
-	Local $connectedTo = GUICtrlCreateInput("", 150, 240, 300, 20)
+	GUICtrlCreateLabel("Логин администратора", 5, 210) ; next line
+    Local $adminLogin = GUICtrlCreateInput("", 150, 210, 300, 20)
+
+	GUICtrlCreateLabel("Пароль администратора", 5, 240) ; next line
+    Local $adminPassword = GUICtrlCreateInput("", 150, 240, 300, 20)
+
+	GUICtrlCreateLabel("Логин пользователя", 5, 270) ; next line
+    Local $userLogin = GUICtrlCreateInput("", 150, 270, 300, 20)
+
+	GUICtrlCreateLabel("Пароль пользователя", 5, 300) ; next line
+    Local $userPassword =GUICtrlCreateInput("", 150, 300, 300, 20)
+
+
+GUICtrlSetData($periphery, 'клавиатура, мышь')
+
+
+
+
+
+;----------------------
+
+
+
+
+
+;~ 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
+;~ 	 Local $departament = GUICtrlCreateInput("", 150, 30, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Ф.И.О. пользователя", 5, 60) ; next line
+;~     ;GUICtrlSetState(-1, $GUI_DROPACCEPTED)
+;~     Local $fullUserName = GUICtrlCreateInput("", 150, 60, 300, 20) ; will not accept drag&drop files
+
+
+;~ 	GUICtrlCreateLabel("Телефон пользователя", 5, 90) ; next line
+;~ 	Local $phone = GUICtrlCreateInput("", 150, 90, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Логин администратора", 5, 120) ; next line
+;~     Local $adminLogin = GUICtrlCreateInput("", 150, 120, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Пароль администратора", 5, 150) ; next line
+;~     Local $adminPassword = GUICtrlCreateInput("", 150, 150, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Логин пользователя", 5, 180) ; next line
+;~     Local $userLogin = GUICtrlCreateInput("", 150, 180, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Пароль пользователя", 5, 210) ; next line
+;~     Local $userPassword =GUICtrlCreateInput("", 150, 210, 300, 20)
+
+;~ 	GUICtrlCreateLabel("Куда подключен ПК", 5, 240) ; next line
+;~ 	Local $connectedTo = GUICtrlCreateInput("", 150, 240, 300, 20)
+
+
+
+
+
+;~ 	GUICtrlCreateLabel("Доп. оборудование", 5, 270) ; next line
+;~ 	Local $periphery = GUICtrlCreateInput("", 150, 270, 300, 20)
+
+;~ 	GUICtrlCreateLabel("ИБП", 5, 300) ; next line
+;~ 	Local $upc = GUICtrlCreateInput("", 150, 300, 300, 20)
 
 
 
@@ -79,7 +138,9 @@ Next
     ; Display the child GUI.
     GUISetState(@SW_SHOW)
 
-    ; Loop until the user exits.
+
+
+	; Loop until the user exits.
     While 1
         Switch GUIGetMsg()
             Case $GUI_EVENT_CLOSE

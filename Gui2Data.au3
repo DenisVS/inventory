@@ -2,13 +2,17 @@
 
 
 
-;~ ReDim $options[UBound($collectedData)][10]
-;~ $columnsCounter = UBound($data, $UBOUND_COLUMNS)+ 1
-$columnsCounter = UBound($data, $UBOUND_COLUMNS)
-;~ MsgBox($MB_SYSTEMMODAL, "$deparament", $deparament)
-;~ MsgBox($MB_SYSTEMMODAL, "$columnsCounter", $columnsCounter)
-ReDim $data[2][$columnsCounter+8]
 
+
+;------------------------
+
+
+	$columnsCounter = UBound($data, $UBOUND_COLUMNS)
+	ReDim $data[2][$columnsCounter+10]
+
+
+
+;-----------------------
 	$data[0][$columnsCounter+0] = 'departament'
 	$data[1][$columnsCounter+0] = GUICtrlRead($departament)
 
@@ -33,8 +37,12 @@ ReDim $data[2][$columnsCounter+8]
 	$data[0][$columnsCounter+7] = 'connected_to'
 	$data[1][$columnsCounter+7] = GUICtrlRead($connectedTo)
 
+	$data[0][$columnsCounter+8] = 'upc'
+	$data[1][$columnsCounter+8] = GUICtrlRead($upc)
 
-
+	$data[0][$columnsCounter+9] = 'periphery'
+	$data[1][$columnsCounter+9] = GUICtrlRead($periphery)
+	$data[1][$columnsCounter+9] = StringReplace($data[1][$columnsCounter+9], ",", "|")
 
 ;~ 	MsgBox(0,'$parameters',$parameters[$i])
         ;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
