@@ -28,3 +28,9 @@ Operating System,,License Information,,Product Key,,product_key,5,1
 Operating System,,License Information,,Product Activation (WPA),,activation,5,1
 Operating System,,Operating System Properties,,OS Installation Date,,os_installation_date,5,1
 Licenses,,,,,,licenses,145,1,4
+SMART,,09,,Data,,smart_poweron_time,15,1,4
+SMART,,05,,Data,,smart_reallocated_sectors,15,1,4
+SMART,,BB,,Data,,smart_uncorrectable_errors,15,1,4
+SMART,,05,,Data,,smart_reallocated_sectors,15,1,4
+SMART,,C4,,Data,,smart_reallocated_event,15,1,4
+
