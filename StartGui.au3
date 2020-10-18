@@ -45,7 +45,7 @@
 	GUICtrlSetBkColor($idInformation, 0xFFFF00)
 	GUICtrlSetData($idInformation, "ОБРАБОТКА ИНФОРМАЦИИ О ПК, ЖДИТЕ")
 	; Run data parsing
-	MsgBox(0,$aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir, $aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
+;~ 	MsgBox(0,$aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir, $aidaExecute & " /R " & $aidaReportFileName & " /CUSTOM " & $aidaConfigFileName & " /csv", $aidaDir)
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
 
 ;---------------------------------

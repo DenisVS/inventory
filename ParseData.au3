@@ -87,8 +87,8 @@ Func _ParseData($parametersFileName, $aidaReportFileName)
 	WEnd
 	$collectedData = _DeleteEmptyRows($collectedData)
 	ReDim $options[UBound($collectedData)][10]
-;~ 	_ArrayDisplay($collectedData, 'OUT')
-	;~ _ArrayDisplay($options, 'OUT')
+	_ArrayDisplay($collectedData, 'OUT')
+;~ 	_ArrayDisplay($options, 'OUT')
 
 	; Run data processing
 	$collectedData = _DataProcessing ($collectedData, $options)

@@ -97,6 +97,7 @@ $paramVal = Trim($paramVal)
 
 			Next
 
+			; Probably here we are concatinate values of the specific cell from different rows
 			if $iIndex >= 0	Then
 				$table[1][$iIndex] = $table[1][$iIndex] & "|" & $paramVal
 				$paramPlus = $paramPlus + 1

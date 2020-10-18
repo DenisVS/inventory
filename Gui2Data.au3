@@ -3,6 +3,7 @@
 
 
 ;~ ReDim $options[UBound($collectedData)][10]
+;~ $columnsCounter = UBound($data, $UBOUND_COLUMNS)+ 1
 $columnsCounter = UBound($data, $UBOUND_COLUMNS)
 ;~ MsgBox($MB_SYSTEMMODAL, "$deparament", $deparament)
 ;~ MsgBox($MB_SYSTEMMODAL, "$columnsCounter", $columnsCounter)
