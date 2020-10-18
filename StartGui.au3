@@ -5,7 +5,7 @@
     GUICtrlCreatePic("..\GUI\msoobe.jpg", 0, 0, 400, 100)
 
 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
-	 Local $deparament = GUICtrlCreateInput("", 150, 30, 300, 20)
+	 Local $departament = GUICtrlCreateInput("", 150, 30, 300, 20)
 
 	GUICtrlCreateLabel("Ф.И.О. пользователя", 5, 60) ; next line
     ;GUICtrlSetState(-1, $GUI_DROPACCEPTED)

@@ -9,8 +9,8 @@ $columnsCounter = UBound($data, $UBOUND_COLUMNS)
 ;~ MsgBox($MB_SYSTEMMODAL, "$columnsCounter", $columnsCounter)
 ReDim $data[2][$columnsCounter+9]
 
-	$data[0][$columnsCounter+0] = 'deparament'
-	$data[1][$columnsCounter+0] = GUICtrlRead($deparament)
+	$data[0][$columnsCounter+0] = 'departament'
+	$data[1][$columnsCounter+0] = GUICtrlRead($departament)
 
 	$data[0][$columnsCounter+1] = 'full_user_name'
 	$data[1][$columnsCounter+1] = GUICtrlRead($fullUserName)
