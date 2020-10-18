@@ -30,8 +30,8 @@
 	GUICtrlCreateLabel("Куда подключен ПК", 5, 240) ; next line
 	Local $connectedTo = GUICtrlCreateInput("", 150, 240, 300, 20)
 
-	GUICtrlCreateLabel("Примечания", 5, 270) ; next line
-	Local $remarks = GUICtrlCreateEdit("", 150, 270, 300, 97, $ES_AUTOVSCROLL + $WS_VSCROLL)
+
+
 
 	;Local $idProgressbar2 = GUICtrlCreateProgress(300, 520, 200, 20, $PBS_SMOOTH)
 	Local $idInformation = GUICtrlCreateLabel("СБОР ИНФОРМАЦИИ О ПК, ЖДИТЕ", 300, 420 )

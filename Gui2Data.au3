@@ -7,7 +7,7 @@
 $columnsCounter = UBound($data, $UBOUND_COLUMNS)
 ;~ MsgBox($MB_SYSTEMMODAL, "$deparament", $deparament)
 ;~ MsgBox($MB_SYSTEMMODAL, "$columnsCounter", $columnsCounter)
-ReDim $data[2][$columnsCounter+9]
+ReDim $data[2][$columnsCounter+8]
 
 	$data[0][$columnsCounter+0] = 'departament'
 	$data[1][$columnsCounter+0] = GUICtrlRead($departament)
@@ -33,8 +33,7 @@ ReDim $data[2][$columnsCounter+9]
 	$data[0][$columnsCounter+7] = 'connected_to'
 	$data[1][$columnsCounter+7] = GUICtrlRead($connectedTo)
 
-	$data[0][$columnsCounter+8] = 'remarks'
-	$data[1][$columnsCounter+8] = GUICtrlRead($remarks)
+
 
 
 ;~ 	MsgBox(0,'$parameters',$parameters[$i])
