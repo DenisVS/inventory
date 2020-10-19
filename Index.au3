@@ -1,8 +1,8 @@
+#RequireAdmin
 ;------- Includes fn  -----------
 ;-- Common
 ;~ #include "Loga.au3"
 #include <file.au3>
-#RequireAdmin
 #include "ParseData.au3"
 #include "HttpPost.au3"
 

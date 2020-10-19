@@ -41,55 +41,7 @@
     Local $userPassword =GUICtrlCreateInput("", 150, 300, 300, 20)
 
 
-GUICtrlSetData($periphery, 'клавиатура, мышь')
-
-
-
-
-
-;----------------------
-
-
-
-
-
-;~ 	GUICtrlCreateLabel("Отдел", 5, 30) ; first cell 70 width
-;~ 	 Local $departament = GUICtrlCreateInput("", 150, 30, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Ф.И.О. пользователя", 5, 60) ; next line
-;~     ;GUICtrlSetState(-1, $GUI_DROPACCEPTED)
-;~     Local $fullUserName = GUICtrlCreateInput("", 150, 60, 300, 20) ; will not accept drag&drop files
-
-
-;~ 	GUICtrlCreateLabel("Телефон пользователя", 5, 90) ; next line
-;~ 	Local $phone = GUICtrlCreateInput("", 150, 90, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Логин администратора", 5, 120) ; next line
-;~     Local $adminLogin = GUICtrlCreateInput("", 150, 120, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Пароль администратора", 5, 150) ; next line
-;~     Local $adminPassword = GUICtrlCreateInput("", 150, 150, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Логин пользователя", 5, 180) ; next line
-;~     Local $userLogin = GUICtrlCreateInput("", 150, 180, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Пароль пользователя", 5, 210) ; next line
-;~     Local $userPassword =GUICtrlCreateInput("", 150, 210, 300, 20)
-
-;~ 	GUICtrlCreateLabel("Куда подключен ПК", 5, 240) ; next line
-;~ 	Local $connectedTo = GUICtrlCreateInput("", 150, 240, 300, 20)
-
-
-
-
-
-;~ 	GUICtrlCreateLabel("Доп. оборудование", 5, 270) ; next line
-;~ 	Local $periphery = GUICtrlCreateInput("", 150, 270, 300, 20)
-
-;~ 	GUICtrlCreateLabel("ИБП", 5, 300) ; next line
-;~ 	Local $upc = GUICtrlCreateInput("", 150, 300, 300, 20)
-
-
+	GUICtrlSetData($periphery, 'клавиатура, мышь')
 
 
 	;Local $idProgressbar2 = GUICtrlCreateProgress(300, 520, 200, 20, $PBS_SMOOTH)
@@ -108,13 +60,14 @@ GUICtrlSetData($periphery, 'клавиатура, мышь')
 	$data = _ParseData($parametersFileName, $aidaReportFileName)
 
 ;---------------------------------
-
+; autofill user_name by $userLogin variable
 For $columnsCounter=0 To UBound($data, $UBOUND_COLUMNS) - 1
 	if $data[0][$columnsCounter] = 'user_name' Then
 		GUICtrlSetData($userLogin, $data[1][$columnsCounter])
-;~ 	MsgBox(0,'$parameters',$parameters[$i])
-        ;If Not StringLen($parameters[$i+1][0])>0 Then ExitLoop
-		EndIf
+	EndIf
+	if $data[0][$columnsCounter] = 'fqdn' Then
+		$fqdn = $data[1][$columnsCounter]
+	EndIf
 Next
 
 
@@ -171,10 +124,10 @@ Next
 				; List all the files in the current script directory.
 ;~ 				Local $aScriptDir = _FileListToArray(@ScriptDir)
 				; Create a file in the users %TEMP% directory.
-				Local $sFilePath = @DesktopDir & "\Report.csv"
+				Local $sFilePath = @DesktopDir & "\Report_" & $fqdn & ".csv"
 				; Write array to a file by passing the file name.
 				Local $sDelimiter
-				_FileWriteFromArray($sFilePath, $csv, 0, Default,$sDelimiter = ",")
+				_FileWriteFromArray($sFilePath, $data, Default, Default, ",")
 				; Display the file.
 ;~ 				ShellExecute($sFilePath)
 
